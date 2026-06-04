@@ -55,11 +55,13 @@ export default function Navbar() {
 
             {/* CONTACT BUTTON */}
             <div className="hidden md:block">
-            <Button
-                text="Contact"
-                icon={<ArrowRight size={18} />}
-                variant="gold"
-            />
+              <a href="#contact">
+              <Button
+                  text="Contact"
+                  icon={<ArrowRight size={18} />}
+                  variant="gold"
+              />
+              </a>
             </div>
 
             {/* MOBILE MENU BUTTON */}
@@ -97,10 +99,12 @@ export default function Navbar() {
             ))}
 
             <div className="pt-4">
+              <a href="#contact">
               <Button
                 text="Contact"
                 variant="gold"
               />
+              </a>
             </div>
 
           </ul>

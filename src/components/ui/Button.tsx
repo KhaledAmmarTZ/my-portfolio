@@ -16,6 +16,8 @@ type ButtonProps = {
   pressedIcon?: string;  // icon when pressed
 
   onClick?: () => void;
+
+  fullWidth?: boolean;
 };
 
 export default function Button({
@@ -26,6 +28,7 @@ export default function Button({
   normalIcon,
   pressedIcon,
   onClick,
+  fullWidth = false,
 }: ButtonProps) {
 
   const [pressed, setPressed] = useState(false);
@@ -71,6 +74,7 @@ export default function Button({
         ${base}
         ${variant === "gold" ? gold : dark}
         ${pressGlow}
+        ${fullWidth ? "w-full justify-center" : ""}
       `}
     >
 

@@ -21,6 +21,17 @@ export default function Hero() {
       {/* ================= DESKTOP LAYER ================= */}
       <div className="hidden md:block">
 
+        {/* LEFT DECORATION IMAGE */}
+        <div className="absolute -left-2.5 top-0 z-0 pointer-events-none">
+          <Image
+            src="/images/Golden tree1.svg"
+            alt="decoration"
+            width={800}
+            height={800}
+            className="object-contain"
+          />
+        </div>
+
         {/* BACKGROUND IMAGE */}
         <div className="absolute inset-0 flex items-center justify-center z-0">
           <div className="relative w-400 h-500">

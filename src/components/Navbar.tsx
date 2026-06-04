@@ -10,7 +10,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-md ">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md ">
 
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -58,7 +58,7 @@ export default function Navbar() {
             <Button
                 text="Contact"
                 icon={<ArrowRight size={18} />}
-                variant="dark"
+                variant="gold"
             />
             </div>
 
@@ -75,7 +75,7 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-6 bg-black">
+        <div className="md:hidden px-6 pb-6k">
           <ul className="flex flex-col gap-4">
 
             {navItems.map((item) => (
@@ -99,7 +99,7 @@ export default function Navbar() {
             <div className="pt-4">
               <Button
                 text="Contact"
-                variant="dark"
+                variant="gold"
               />
             </div>
 

@@ -6,7 +6,7 @@ import Image from "next/image";
 type ButtonProps = {
   text: string;
 
-  icon?: ReactNode; // optional fallback if you still want React icons
+  icon?: ReactNode; 
 
   iconPosition?: "left" | "right";
 

@@ -1,12 +1,20 @@
 "use client";
 
 import { ReactNode, useState } from "react";
+import Image from "next/image";
 
 type ButtonProps = {
   text: string;
-  icon?: ReactNode;
+
+  icon?: ReactNode; // optional fallback if you still want React icons
+
   iconPosition?: "left" | "right";
+
   variant?: "gold" | "dark";
+
+  normalIcon?: string;   // default icon path
+  pressedIcon?: string;  // icon when pressed
+
   onClick?: () => void;
 };
 
@@ -15,33 +23,43 @@ export default function Button({
   icon,
   iconPosition = "right",
   variant = "gold",
+  normalIcon,
+  pressedIcon,
   onClick,
 }: ButtonProps) {
 
   const [pressed, setPressed] = useState(false);
 
-  const base =
-    "inline-flex items-center gap-2 px-6 py-3 rounded-[12px] font-medium transition-all duration-150 active:scale-95 select-none";
+  // decide which icon to show
+  const currentIcon =
+    pressed && pressedIcon
+      ? pressedIcon
+      : normalIcon;
 
-  // shared pressed effect (BOTH buttons)
-  const pressEffect =
+  // BASE STYLE
+  const base =
+    "inline-flex items-center gap-2 px-6 py-3 rounded-[12px] font-medium transition-all duration-150 cursor-pointer select-none ";
+
+  // VARIANTS
+  const gold =
+    "bg-[#D4AF37] text-black";
+
+  const dark =
+    "bg-[#15161A] border border-[#D4AF37] text-white";
+
+  // PRESS GLOW (ALL BUTTONS)
+  const pressGlow =
     pressed
       ? "shadow-[0_0_18px_rgba(212,175,55,0.45)]"
       : "";
 
-  const gold = `
-    bg-[#D4AF37]
-    text-black
-  `;
-
-  const dark = `
-    bg-[#15161A]
-    border border-[#D4AF37]
-    text-white
-  `;
-
-  const darkPressedText =
-    pressed ? "text-[#D4AF37]" : "text-white";
+  // TEXT COLOR
+  const textColor =
+    variant === "dark"
+      ? pressed
+        ? "text-[#D4AF37]"
+        : "text-white"
+      : "text-black";
 
   return (
     <button
@@ -51,25 +69,40 @@ export default function Button({
       onClick={onClick}
       className={`
         ${base}
-        ${pressEffect}
         ${variant === "gold" ? gold : dark}
+        ${pressGlow}
       `}
     >
-      {iconPosition === "left" && (
-        <span className={variant === "dark" && pressed ? "text-[#D4AF37]" : ""}>
-          {icon}
-        </span>
-      )}
 
-      <span className={variant === "dark" ? darkPressedText : ""}>
+      {/* LEFT ICON */}
+        {iconPosition === "left" && currentIcon && (
+        <span className="flex items-center justify-center">
+            <Image
+            src={currentIcon}
+            alt="icon"
+            width={18}
+            height={18}
+            />
+        </span>
+        )}
+
+      {/* TEXT */}
+      <span className={`${textColor}`}>
         {text}
       </span>
 
-      {iconPosition === "right" && (
-        <span className={variant === "dark" && pressed ? "text-[#D4AF37]" : ""}>
-          {icon}
+      {/* RIGHT ICON */}
+        {iconPosition === "right" && currentIcon && (
+        <span className="flex items-center justify-center">
+            <Image
+            src={currentIcon}
+            alt="icon"
+            width={18}
+            height={18}
+            />
         </span>
-      )}
+        )}
+
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import Button from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
-
+import Image from "next/image";
 export default function Hero() {
   return (
     <section
@@ -49,18 +49,19 @@ export default function Hero() {
         ">
 
           <Button
-            text="Contact Me"
-            icon={<ArrowRight size={18} />}
+            text="View Projects"
+            icon={<Image src="/icons/right.svg" alt="icon" width={18} height={18} />}
             iconPosition="right"
             variant="gold"
           />
 
           <Button
-            text="View Projects"
-            icon={<ArrowRight size={18} />}
-            iconPosition="right"
+            text="Download CV"
+            iconPosition="left"
             variant="dark"
-          />
+            normalIcon="/icons/download.svg"
+            pressedIcon="/icons/gold_download.svg"
+            />
 
         </div>
 

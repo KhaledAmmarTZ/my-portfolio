@@ -54,7 +54,7 @@ export default function ProjectCarousel({ projects }: Props) {
         {/* LEFT CARD */}
         <motion.div
           onClick={goPrev}
-          className="absolute left-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
+          className="hidden md:block absolute left-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
         >
           <Image
             src={projects[prevIndex].image}
@@ -67,7 +67,7 @@ export default function ProjectCarousel({ projects }: Props) {
         {/* RIGHT CARD */}
         <motion.div
           onClick={goNext}
-          className="absolute right-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
+          className="hidden md:block absolute right-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
         >
           <Image
             src={projects[nextIndex].image}

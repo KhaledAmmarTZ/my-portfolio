@@ -115,17 +115,31 @@ export default function Hero() {
       </div>
 
       {/* ================= MOBILE LAYOUT (NO OVERLAP) ================= */}
-      <div className="md:hidden flex flex-col items-center px-6 pt-14 pb-6 gap-6">
+      <div className="md:hidden flex flex-col items-center px-6 pt-40 pb-10 gap-45">
+          
+          {/* LEFT DECORATION IMAGE */}
+        <div className="absolute -left-2.5 top-0 z-0 pointer-events-none">
+          <Image
+            src="/images/Golden tree1.svg"
+            alt="decoration"
+            width={800}
+            height={800}
+            className="object-contain"
+          />
+        </div>
 
+          <div className="scale-200 pointer-events-none">
         {/* IMAGE FIRST */}
         <Image
           src="/images/Hero_Image.svg"
           alt="profile"
-          width={400}
-          height={400}
+          width={350}
+          height={350}
           className="object-contain"
         />
-
+          </div>
+          
+          <div className="flex flex-col items-center gap-8">
         {/* TEXT */}
         <div className="text-center">
           <p className="text-gray-400 text-lg">Hello, I'm</p>
@@ -133,8 +147,6 @@ export default function Hero() {
             Khaled Ammar
           </h1>
         </div>
-
-        
 
         {/* BUTTONS */}
         <div className="flex justify-center gap-3 w-full">
@@ -175,7 +187,7 @@ export default function Hero() {
               />
             </a>
           ))}
-
+          </div>
         </div>
 
       </div>

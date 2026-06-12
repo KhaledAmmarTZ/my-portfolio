@@ -115,7 +115,7 @@ export default function Hero() {
       </div>
 
       {/* ================= MOBILE LAYOUT (NO OVERLAP) ================= */}
-      <div className="md:hidden flex flex-col items-center px-6 pt-40 pb-10 gap-45">
+      <div className="md:hidden flex flex-col items-center px-6 pt-40 pb-10 gap-35">
           
           {/* LEFT DECORATION IMAGE */}
         <div className="absolute -left-2.5 top-0 z-0 pointer-events-none">

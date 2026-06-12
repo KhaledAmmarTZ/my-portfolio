@@ -115,14 +115,14 @@ export default function Hero() {
       </div>
 
       {/* ================= MOBILE LAYOUT (NO OVERLAP) ================= */}
-      <div className="md:hidden flex flex-col items-center px-6 pt-20 pb-10 gap-10">
+      <div className="md:hidden flex flex-col items-center px-6 pt-14 pb-6 gap-6">
 
         {/* IMAGE FIRST */}
         <Image
           src="/images/Hero_Image.svg"
           alt="profile"
-          width={250}
-          height={250}
+          width={400}
+          height={400}
           className="object-contain"
         />
 

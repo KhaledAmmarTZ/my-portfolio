@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react";
 import { navItems } from "@/data/navItems";
 import Button from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [active, setActive] = useState("#home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // ✅ Scroll Spy (Fixed + Stable)
   useEffect(() => {
     const sections = navItems
       .map((item) => document.querySelector(item.href))
@@ -37,75 +36,79 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0B0B0F]/70 border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
 
-        {/* LEFT - LOGO */}
-        <div className="text-white font-bold text-2xl">
+        {/* Logo */}
+        <div className="text-white font-bold text-2xl shrink-0">
           KA
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="flex items-center gap-10">
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-10">
 
-          {/* NAV ITEMS */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="flex items-center gap-8">
             {navItems.map((item) => (
-              <li key={item.label} className="relative group cursor-pointer">
-
+              <li
+                key={item.label}
+                className="relative group"
+              >
                 <a
                   href={item.href}
-                  onClick={() => setActive(item.href)} 
-                  className={`
-                    transition-colors duration-200
-                    ${active === item.href ? "text-[#D4AF37]" : "text-white"}
-                    group-hover:text-[#D4AF37]
-                  `}
+                  onClick={() => setActive(item.href)}
+                  className={`transition-colors duration-200 ${
+                    active === item.href
+                      ? "text-[#D4AF37]"
+                      : "text-white"
+                  } group-hover:text-[#D4AF37]`}
                 >
                   {item.label}
                 </a>
 
-                {/* GOLD BAR */}
                 <span
-                  className={`
-                    absolute left-0 -bottom-1 h-0.5 bg-[#D4AF37]
-                    transition-all duration-300
-                    ${active === item.href ? "w-full" : "w-0 group-hover:w-full"}
-                  `}
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-[#D4AF37] transition-all duration-300 ${
+                    active === item.href
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
                 />
               </li>
             ))}
           </ul>
 
-          {/* CONTACT BUTTON */}
-          <div className="hidden md:block">
-            <a
-              href="#contact"
-              onClick={() => setActive("#contact")} 
-            >
-              <Button
-                text="Contact"
-                icon={<ArrowRight size={18} />}
-                variant="gold"
-              />
-            </a>
-          </div>
-
-          {/* MOBILE MENU BUTTON */}
-          <button
-            className="md:hidden text-white text-2xl"
-            onClick={() => setMenuOpen(!menuOpen)}
+          <a
+            href="#contact"
+            onClick={() => setActive("#contact")}
           >
-            ☰
-          </button>
+            <Button
+              text="Contact"
+              icon={<ArrowRight size={18} />}
+              variant="gold"
+            />
+          </a>
 
         </div>
+
+        {/* Mobile Button */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? (
+            <X size={28} />
+          ) : (
+            <Menu size={28} />
+          )}
+        </button>
+
       </div>
 
-      {/* MOBILE MENU */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-6">
-          <ul className="flex flex-col gap-4">
+        <div className="md:hidden w-full bg-[#0B0B0F] border-t border-white/10">
+
+          <ul className="px-4 py-4 flex flex-col gap-4">
 
             {navItems.map((item) => (
               <li key={item.label}>
@@ -115,17 +118,18 @@ export default function Navbar() {
                     setActive(item.href);
                     setMenuOpen(false);
                   }}
-                  className={`
-                    block py-2
-                    ${active === item.href ? "text-[#D4AF37]" : "text-white"}
-                  `}
+                  className={`block py-2 ${
+                    active === item.href
+                      ? "text-[#D4AF37]"
+                      : "text-white"
+                  }`}
                 >
                   {item.label}
                 </a>
               </li>
             ))}
 
-            <div className="pt-4 ">
+            <div className="pt-2">
               <a
                 href="#contact"
                 onClick={() => {
@@ -133,11 +137,16 @@ export default function Navbar() {
                   setMenuOpen(false);
                 }}
               >
-                <Button fullWidth text="Contact" variant="gold" />
+                <Button
+                  fullWidth
+                  text="Contact"
+                  variant="gold"
+                />
               </a>
             </div>
 
           </ul>
+
         </div>
       )}
     </nav>

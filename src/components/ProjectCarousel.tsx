@@ -191,9 +191,7 @@ export default function ProjectCarousel({ projects }: Props) {
       </div>
 
       {/* ================= DETAILS ================= */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12  pt-16">
 
-        {/* LEFT SIDE */}
         <div className="space-y-8">
 
           <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
@@ -234,7 +232,7 @@ export default function ProjectCarousel({ projects }: Props) {
 
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Button text="View Full Details" variant="gold" iconPosition="right" normalIcon="/icons/right.svg" pressedIcon="/icons/right.svg" />
             <Button text="All Projects" variant="dark" iconPosition="right" normalIcon="/icons/white_right.svg" pressedIcon="/icons/gold_right.svg" />
           </div>
@@ -242,52 +240,7 @@ export default function ProjectCarousel({ projects }: Props) {
 
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="space-y-8">
-
-          <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
-            <h3 className="text-[#D4AF37] text-lg mb-2">Project Info</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-white/70 ">
-                <User size={32} className="text-[#D4AF37] border border-[#D4AF37] p-1 rounded-md" />
-                <span>Client: {projects[current].info.client}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-white/70">
-                <Clock size={32} className="text-[#D4AF37] border border-[#D4AF37] p-1 rounded-md" />
-                <span>Duration: {projects[current].info.duration}</span>
-              </div>
-
-              <div className="flex items-center gap-2 text-white/70">
-                <Briefcase size={32} className="text-[#D4AF37] border border-[#D4AF37] p-1 rounded-md" />
-                <span>Role: {projects[current].info.role}</span>
-              </div>
-
-            </div>
-          </div>
-
-          <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
-            <h3 className="text-[#D4AF37] text-lg mb-2">Technologies</h3>
-            <div className="flex flex-wrap gap-2">
-              {projects[current].technologies.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
-            <h3 className="text-[#D4AF37] text-lg mb-2">Impact & Result</h3>
-            <p className="text-white/70">{projects[current].impact}</p>
-          </div>
-
-        </div>
-
       </div>
-    </div>
+    
   );
 }

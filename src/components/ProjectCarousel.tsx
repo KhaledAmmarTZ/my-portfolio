@@ -49,7 +49,7 @@ export default function ProjectCarousel({ projects }: Props) {
     <div className="relative">
 
       {/* ================= CAROUSEL ================= */}
-      <div className="relative h-162.5 flex items-center justify-center mb-20">
+      <div className="relative h-162.5 flex items-center justify-center mb-24">
 
         {/* LEFT CARD */}
         <motion.div
@@ -102,7 +102,6 @@ export default function ProjectCarousel({ projects }: Props) {
 
             {/* Bottom Content */}
             <div className="absolute bottom-0 left-0 right-0 p-8 overflow-hidden">
-
               <div
                 className="absolute inset-0 backdrop-blur-xl"
                 style={{
@@ -124,7 +123,6 @@ export default function ProjectCarousel({ projects }: Props) {
                   {projects[current].title}
                 </h3>
               </div>
-
             </div>
 
             <div className="absolute top-6 right-6 flex items-center gap-2">
@@ -142,8 +140,9 @@ export default function ProjectCarousel({ projects }: Props) {
             </div>
           </motion.div>
         </AnimatePresence>
+
         {/* BOTTOM CONTROLS */}
-        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-8">
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8">
 
           {/* PREV */}
           <button
@@ -151,12 +150,12 @@ export default function ProjectCarousel({ projects }: Props) {
             className="group w-14 h-14 rounded-full border border-[#D4AF37] bg-white/5 backdrop-blur-xl flex items-center justify-center transition-all duration-300 hover:border-[#D4AF37] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
           >
             <Image
-  src="/icons/gold_right.svg"
-  alt="Previous"
-  width={20}
-  height={20}
-  className="rotate-180"
-/>
+              src="/icons/gold_right.svg"
+              alt="Previous"
+              width={20}
+              height={20}
+              className="rotate-180"
+            />
           </button>
 
           {/* DOTS */}
@@ -186,61 +185,82 @@ export default function ProjectCarousel({ projects }: Props) {
               height={20}
             />
           </button>
-
         </div>
       </div>
 
       {/* ================= DETAILS ================= */}
+      <div className="space-y-10 mt-24 mb-24">
 
-        <div className="space-y-8">
+        {/* OVERVIEW */}
+        <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-8 bg-[#15161A]">
+          <h3 className="text-[#D4AF37] text-lg mb-4">
+            Overview
+          </h3>
 
-          <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
-            <h3 className="text-[#D4AF37] text-lg mb-2">Overview</h3>
-            <p className="text-white/70">{projects[current].overview}</p>
-          </div>
+          <p className="text-white/70 leading-7">
+            {projects[current].overview}
+          </p>
+        </div>
 
-          {/* CHALLENGES & SOLUTIONS */}
-          <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-6 bg-[#15161A]">
+        {/* CHALLENGES & SOLUTIONS */}
+        <div className="border-2 border-[#D4AF37]/50 rounded-2xl p-8 bg-[#15161A]">
+          <h3 className="text-xl text-white mb-6">
+            Challenges & Solutions
+          </h3>
 
-            <h3 className="text-lg mb-4 text-white">
-              Challenges & Solutions
-            </h3>
-
-            <h5 className="text-sm text-[#D4AF37] mb-2">
+          <div className="mb-8">
+            <h5 className="text-sm text-[#D4AF37] mb-3">
               Key Challenges
             </h5>
 
-            <ul className="space-y-2 mb-4">
+            <ul className="space-y-3">
               {projects[current].problem.map((item, i) => (
-                <li key={i} className="text-white/70 text-sm">
+                <li
+                  key={i}
+                  className="text-white/70 leading-6"
+                >
                   • {item}
                 </li>
               ))}
             </ul>
+          </div>
 
-            <h5 className="text-sm text-[#D4AF37] mb-2">
+          <div>
+            <h5 className="text-sm text-[#D4AF37] mb-3">
               Our Solutions
             </h5>
 
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {projects[current].solution.map((item, i) => (
-                <li key={i} className="text-white/70 text-sm">
+                <li
+                  key={i}
+                  className="text-white/70 leading-6"
+                >
                   • {item}
                 </li>
               ))}
             </ul>
-
           </div>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Button text="View Full Details" variant="gold" iconPosition="right" normalIcon="/icons/right.svg" pressedIcon="/icons/right.svg" />
-            <Button text="All Projects" variant="dark" iconPosition="right" normalIcon="/icons/white_right.svg" pressedIcon="/icons/gold_right.svg" />
-          </div>
-
 
         </div>
 
+        {/* ACTION BUTTONS */}
+        <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
+
+          <Button
+            text="View Full Details"
+            variant="gold"
+            iconPosition="right"
+            normalIcon="/icons/right.svg"
+            pressedIcon="/icons/right.svg"
+          />
+
+          <Button
+            text="All Projects"
+            variant="dark"
+          />
+        </div>
       </div>
-    
+    </div>
   );
 }

@@ -51,6 +51,9 @@ export default function RightSidebar() {
           onMouseDown={() => setPressed(item.id)}
           onMouseUp={() => setPressed(null)}
           onMouseLeave={() => setPressed(null)}
+          onTouchStart={() => setPressed(item.id)}
+          onTouchEnd={() => setPressed(null)}
+          onTouchCancel={() => setPressed(null)}
           className={`
             w-12 h-12 flex items-center justify-center
             bg-[#15161A]

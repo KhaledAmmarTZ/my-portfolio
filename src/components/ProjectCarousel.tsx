@@ -54,7 +54,7 @@ export default function ProjectCarousel({ projects }: Props) {
         {/* LEFT CARD */}
         <motion.div
           onClick={goPrev}
-          className="hidden md:block absolute left-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
+          className="hidden lg:block absolute left-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-80 blur-[3px] scale-90 z-10 cursor-pointer"
         >
           <Image
             src={projects[prevIndex].image}
@@ -67,7 +67,7 @@ export default function ProjectCarousel({ projects }: Props) {
         {/* RIGHT CARD */}
         <motion.div
           onClick={goNext}
-          className="hidden md:block absolute right-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-50 blur-[3px] scale-90 z-10 cursor-pointer"
+          className="hidden lg:block absolute right-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-80 blur-[3px] scale-90 z-10 cursor-pointer"
         >
           <Image
             src={projects[nextIndex].image}
@@ -127,21 +127,6 @@ export default function ProjectCarousel({ projects }: Props) {
 
             </div>
 
-            {/* NAV BUTTONS */}
-            <button
-              onClick={goPrev}
-              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/20"
-            >
-              ←
-            </button>
-
-            <button
-              onClick={goNext}
-              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/20"
-            >
-              →
-            </button>
-
             <div className="absolute top-6 right-6 flex items-center gap-2">
               <button className="w-9 h-9 flex items-center justify-center border border-white/20 rounded-lg bg-black/30 backdrop-blur-md hover:border-[#D4AF37] transition">
                 <Image
@@ -157,6 +142,52 @@ export default function ProjectCarousel({ projects }: Props) {
             </div>
           </motion.div>
         </AnimatePresence>
+        {/* BOTTOM CONTROLS */}
+        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-8">
+
+          {/* PREV */}
+          <button
+            onClick={goPrev}
+            className="group w-14 h-14 rounded-full border border-[#D4AF37] bg-white/5 backdrop-blur-xl flex items-center justify-center transition-all duration-300 hover:border-[#D4AF37] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+          >
+            <Image
+  src="/icons/gold_right.svg"
+  alt="Previous"
+  width={20}
+  height={20}
+  className="rotate-180"
+/>
+          </button>
+
+          {/* DOTS */}
+          <div className="flex items-center gap-3">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrent(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  index === current
+                    ? "w-8 h-2 bg-[#D4AF37]"
+                    : "w-2 h-2 bg-[#D4AF37]/40 hover:bg-[#D4AF37]/70"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* NEXT */}
+          <button
+            onClick={goNext}
+            className="group w-14 h-14 rounded-full border border-[#D4AF37] bg-white/5 backdrop-blur-xl flex items-center justify-center transition-all duration-300 hover:border-[#D4AF37] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+          >
+            <Image
+              src="/icons/gold_right.svg"
+              alt="Next"
+              width={20}
+              height={20}
+            />
+          </button>
+
+        </div>
       </div>
 
       {/* ================= DETAILS ================= */}

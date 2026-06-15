@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import RightSidebar from "@/components/RightSidebar";
 import { useState } from "react";
 
 export default function Hero() {
@@ -73,30 +74,7 @@ export default function Hero() {
         {/* RIGHT SIDEBAR */}
         <aside className="absolute right-32 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4">
 
-          {social.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              onMouseDown={() => setPressedId(item.id)}
-              onMouseUp={() => setPressedId(null)}
-              onMouseLeave={() => setPressedId(null)}
-              className={`
-                w-12 h-12 flex items-center justify-center
-                bg-[#15161A]
-                border border-[#D4AF37]/40
-                rounded-xl
-                transition-all duration-150
-                ${pressedId === item.id ? "shadow-[0_0_18px_rgba(212,175,55,0.45)] scale-95" : ""}
-              `}
-            >
-              <Image
-                src={pressedId === item.id ? item.active : item.normal}
-                alt={item.id}
-                width={18}
-                height={18}
-              />
-            </a>
-          ))}
+          <RightSidebar />
 
         </aside>
 
@@ -163,30 +141,7 @@ export default function Hero() {
         {/* SOCIAL (HORIZONTAL) */}
         <div className="flex gap-3 mt-4">
 
-          {social.map((item) => (
-            <a
-              key={item.id}
-              href={item.href}
-              onMouseDown={() => setPressedId(item.id)}
-              onMouseUp={() => setPressedId(null)}
-              onMouseLeave={() => setPressedId(null)}
-              className={`
-                w-12 h-12 flex items-center justify-center
-                bg-[#15161A]
-                border border-[#D4AF37]/40
-                rounded-xl
-                transition-all duration-150
-                ${pressedId === item.id ? "shadow-[0_0_18px_rgba(212,175,55,0.45)] scale-95" : ""}
-              `}
-            >
-              <Image
-                src={pressedId === item.id ? item.active : item.normal}
-                alt={item.id}
-                width={18}
-                height={18}
-              />
-            </a>
-          ))}
+          <RightSidebar mobile/>
           </div>
         </div>
 

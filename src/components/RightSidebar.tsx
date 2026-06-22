@@ -8,30 +8,6 @@ type RightSidebarProps = {
   mobile?: boolean;
 };
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    x: 10,
-  },
-  show: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.35,
-      ease: "easeOut" as const,
-    },
-  },
-};
-
 export default function RightSidebar({
   mobile = false,
 }: RightSidebarProps) {
@@ -71,26 +47,42 @@ export default function RightSidebar({
   ];
 
   return (
-    <motion.aside
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
+    <aside
       className={
         mobile
-          ? "flex flex-row items-center justify-center gap-3"
+          ? "flex flex-row justify-center gap-4"
           : "absolute right-6 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-5"
       }
     >
-      {social.map((item) => (
+      {social.map((item, index) => (
         <motion.a
           key={item.id}
           href={item.href}
           target="_blank"
           rel="noreferrer"
-          variants={itemVariants}
-          whileHover={{
-            scale: 1.08,
-            transition: { duration: 0.2 },
+          initial={
+            mobile
+              ? {
+                  opacity: 0,
+                  y: 50,
+                  scale: 0.8,
+                }
+              : {
+                  opacity: 0,
+                  x: 50,
+                  scale: 0.8,
+                }
+          }
+          animate={{
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: mobile ? 0.5 : 0.36,
+            delay: index * (mobile ? 0.02 : 0.12),
+            ease: "easeOut",
           }}
           onMouseDown={() => setPressed(item.id)}
           onMouseUp={() => setPressed(null)}
@@ -101,9 +93,9 @@ export default function RightSidebar({
           className={`
             w-12 h-12
             flex items-center justify-center
+            rounded-xl
             bg-[#15161A]
             border border-[#D4AF37]/40
-            rounded-xl
             transition-all duration-150
             cursor-pointer
             select-none
@@ -122,6 +114,6 @@ export default function RightSidebar({
           />
         </motion.a>
       ))}
-    </motion.aside>
+    </aside>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
+import RightSidebar from "@/components/RightSidebar";
 
 export default function Contact() {
   const [pressedId, setPressedId] = useState<string | null>(null);
@@ -89,35 +90,12 @@ export default function Contact() {
                 Follow Me
               </h1>
 
-              <div className="flex gap-3 mt-4">
-                {social.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.href}
-                    onMouseDown={() => setPressedId(item.id)}
-                    onMouseUp={() => setPressedId(null)}
-                    onMouseLeave={() => setPressedId(null)}
-                    className={`
-                      w-12 h-12 flex items-center justify-center
-                      bg-[#15161A]
-                      border border-[#D4AF37]/40
-                      rounded-xl
-                      transition-all duration-150
-                      ${pressedId === item.id
-                        ? "shadow-[0_0_18px_rgba(212,175,55,0.45)] scale-95"
-                        : ""
-                      }
-                    `}
-                  >
-                    <Image
-                      src={pressedId === item.id ? item.active : item.normal}
-                      alt={item.id}
-                      width={18}
-                      height={18}
-                    />
-                  </a>
-                ))}
-              </div>
+              {/* SOCIAL (HORIZONTAL) */}
+                      <div className="flex gap-3 mt-4">
+              
+                        <RightSidebar mobile/>
+                        </div>
+                      
             </div>
 
             {/* Availability */}

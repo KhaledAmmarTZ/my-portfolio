@@ -30,7 +30,7 @@ export default function Footer() {
   return (
     <footer className="relative bg-[#0B0B0F] overflow-hidden">
       {/* Tree Image - Slightly Overlapping Footer */}
-      <div className="relative z-10 flex justify-center mb-[-80px] md:mb-[-100px]">
+      <div className="relative z-10 flex justify-center mb-20 md:mb-25">
         <Image
           src="/images/Golden_tree2.png"
           alt="Footer Decoration"

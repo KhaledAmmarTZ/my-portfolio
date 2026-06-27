@@ -48,100 +48,78 @@ export default function ProjectCarousel({ projects }: Props) {
   return (
     <div className="relative">
 
-      {/* ================= CAROUSEL ================= */}
-      <div className="relative h-162.5 flex items-center justify-center mb-24">
+<>
+ {/* ================= DESKTOP ================= */}
+<div className="hidden lg:flex justify-center mb-24">
+  <div className="flex items-start gap-5">
 
-        {/* LEFT CARD */}
-        <motion.div
-          onClick={goPrev}
-          className="hidden lg:block absolute left-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-80 blur-[3px] scale-90 z-10 cursor-pointer"
-        >
-          <Image
-            src={projects[prevIndex].image}
-            alt={projects[prevIndex].title}
-            fill
-            className="object-cover"
+    <div className="w-50.75 h-175 rounded-[10px] bg-red-500 mt-21" />
+
+    <div className="w-50.75 h-175 rounded-[10px] bg-blue-500 mt-46.5" />
+
+    <div className="w-50.75 h-175 rounded-[10px] bg-green-500 mt-px" />
+
+    <div className="w-50.75 h-175 rounded-[10px] bg-yellow-500 mt-16.5" />
+
+    <div className="w-50.75 h-175 rounded-[10px] bg-purple-500 mt-28.75" />
+
+    <div className="w-50.75 h-175 rounded-[10px] bg-pink-500 mt-0" />
+
+  </div>
+</div>
+
+  {/* ================= MOBILE ================= */}
+  <div className="lg:hidden relative h-162.5 flex items-center justify-center mb-24"> 
+
+    {/* CENTER CARD */}
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={projects[current].id}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragEnd={handleDragEnd}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.35 }}
+        className="relative w-200 h-130 rounded-4xl overflow-hidden border-2 border-[#D4AF37] z-20 cursor-grab active:cursor-grabbing"
+      >
+        <Image
+          src={projects[current].image}
+          alt={projects[current].title}
+          fill
+          className="object-cover"
+        />
+
+        <div className="absolute inset-0 bg-black/40" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-8 overflow-hidden">
+          <div
+            className="absolute inset-0 backdrop-blur-xl"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
+            }}
           />
-        </motion.div>
 
-        {/* RIGHT CARD */}
-        <motion.div
-          onClick={goNext}
-          className="hidden lg:block absolute right-[-20%] w-170 h-112.5 rounded-3xl overflow-hidden opacity-80 blur-[3px] scale-90 z-10 cursor-pointer"
-        >
-          <Image
-            src={projects[nextIndex].image}
-            alt={projects[nextIndex].title}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/10 to-black" />
 
-        {/* CENTER CARD */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={projects[current].id}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={handleDragEnd}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.35 }}
-            className="relative w-200 h-130 rounded-4xl overflow-hidden border-2 border-[#D4AF37] z-20 cursor-grab active:cursor-grabbing"
-          >
-            <Image
-              src={projects[current].image}
-              alt={projects[current].title}
-              fill
-              className="object-cover"
-            />
+          <div className="relative">
+            <p className="text-[#D4AF37] text-sm mb-2">
+              {projects[current].category}
+            </p>
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/40" />
+            <h3 className="text-white text-3xl font-semibold">
+              {projects[current].title}
+            </h3>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
 
-            {/* Bottom Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 overflow-hidden">
-              <div
-                className="absolute inset-0 backdrop-blur-xl"
-                style={{
-                  WebkitMaskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
-                  maskImage:
-                    "linear-gradient(to bottom, transparent 0%, black 40%, black 100%)",
-                }}
-              />
-
-              <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/10 to-black" />
-
-              <div className="relative">
-                <p className="text-[#D4AF37] text-sm mb-2">
-                  {projects[current].category}
-                </p>
-
-                <h3 className="text-white text-3xl font-semibold">
-                  {projects[current].title}
-                </h3>
-              </div>
-            </div>
-
-            <div className="absolute top-6 right-6 flex items-center gap-2">
-              <button className="w-9 h-9 flex items-center justify-center border border-white/20 rounded-lg bg-black/30 backdrop-blur-md hover:border-[#D4AF37] transition">
-                <Image
-                  src="/icons/github.svg"
-                  alt="GitHub"
-                  width={16}
-                  height={16}
-                />
-              </button>
-              <button className="w-9 h-9 flex items-center justify-center border border-white/20 rounded-lg bg-black/30 backdrop-blur-md hover:border-[#D4AF37] transition">
-                <ExternalLink size={16} className="text-white/60" />
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* BOTTOM CONTROLS */}
+            {/* BOTTOM CONTROLS */}
         <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8">
 
           {/* PREV */}
@@ -187,6 +165,8 @@ export default function ProjectCarousel({ projects }: Props) {
           </button>
         </div>
       </div>
+  
+</>
 
       {/* ================= DETAILS ================= */}
       <div className="space-y-10 mt-24 mb-24">

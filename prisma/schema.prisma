@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+
+  /// Hidden from normal users
+  id                  String   @id @default(cuid())
+
+  title               String
+  subtitle            String?
+
+  description         String   @db.Text
+
+  liveLink            String?
+
+  typography          String?
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  images              ProjectImage[]
+  reviews             ProjectReview[]
+  colorPalette        ProjectColorPalette?
+  challenges          Challenge[]
+  solutions           Solution[]
+}
+
+model ProjectImage {
+
+  id          String @id @default(cuid())
+
+  projectId   String
+
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  imageUrl    String
+
+  imageType   ImageType
+
+  order       Int @default(0)
+}
+
+enum ImageType {
+
+  MAIN
+
+  SUB
+
+  MOBILE_MOCKUP
+
+  TABLET_MOCKUP
+
+  PC_MOCKUP
+
+  ALL_MOCKUP
+}
+
+model Challenge {
+
+  id          String @id @default(cuid())
+
+  projectId   String
+
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  text        String
+}
+
+model Solution {
+
+  id          String @id @default(cuid())
+
+  projectId   String
+
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  text        String
+}
+
+model ProjectColorPalette {
+
+  id              String @id @default(cuid())
+
+  projectId       String @unique
+
+  project         Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  primaryColor    String
+
+  secondaryColor  String
+
+  accentColor     String
+}
+
+model ProjectReview {
+
+  id          String @id @default(cuid())
+
+  projectId   String
+
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  reviewerImage   String?
+
+  reviewerName    String
+
+  rating          Int
+
+  review          String @db.Text
+}

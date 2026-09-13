@@ -42,7 +42,7 @@ export default function Navbar() {
 
         {/* LEFT - LOGO */}
         <div className="text-white font-bold text-2xl">
-          KA
+          Khaled Ammar
         </div>
 
         {/* RIGHT SIDE */}

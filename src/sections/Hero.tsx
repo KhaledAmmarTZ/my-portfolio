@@ -22,131 +22,110 @@ export default function Hero() {
       {/* ================= DESKTOP LAYER ================= */}
       <div className="hidden md:block">
 
-        {/* LEFT DECORATION IMAGE */}
-        <div className="absolute -left-2.5 top-0 z-0 pointer-events-none">
-          <Image
-            src="/images/Golden tree1.svg"
-            alt="decoration"
-            width={800}
-            height={800}
-            className="object-contain"
+        <aside className="absolute right-32 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4">
+          <RightSidebar />
+        </aside>
+
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 select-none"
+        >
+          <img
+            src="/images/Frame 5.png"
+            alt="Profile"
+            className="relative z-0 pointer-events-none"
+            draggable={false}
+          />
+
+          <img
+            src="/images/Frame 4.png"
+            alt="Portfolio"
+            className="absolute z-10 w-148 h-148 top-0 left-1/2 -translate-x-1/2 pointer-events-none"
+            draggable={false}
           />
         </div>
 
-        {/* BACKGROUND IMAGE */}
-        <div className="absolute inset-0 flex items-center justify-center z-0">
-          <div className="relative w-400 h-500">
-            <Image
-              src="/images/Hero_Image.svg"
-              alt="profile"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* LEFT CONTENT */}
-        <div className="absolute left-32 top-1/2 -translate-y-1/2 z-10 flex flex-col gap-6">
-          <div className="flex items-center gap-2 bg-[#15161A] border border-[#D4AF37]/30 px-4 py-2 rounded-full w-fit">
-            <span className="w-2 h-2 bg-[#D4AF37] rounded-full" />
-            <span className="text-sm text-gray-300">
-              Available for new projects
-            </span>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-2xl">Hello, I'm</p>
-            <h1 className="text-white text-6xl font-bold">
-              Khaled Ammar
-            </h1>
-          </div>
-        </div>
-
-        {/* FLOATING TEXT */}
-        <div className="absolute right-80 top-48 z-10 text-right">
-          <h2 className="text-white text-6xl font-bold leading-tight">
-            Design First <br />
-            Code later
-          </h2>
-        </div>
-
-        {/* RIGHT SIDEBAR */}
-        <aside className="absolute right-32 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-4">
-
-          <RightSidebar />
-
-        </aside>
-
-        {/* BOTTOM CONTENT */}
         <div className="absolute bottom-10 w-full flex flex-col items-center gap-8 z-10">
           <h1 className="text-[#D4AF37] text-[48px] font-bold text-center">
             UI/UX Designer & Frontend Developer
           </h1>
 
           <div className="flex gap-4">
-            <Button text="View Projects" variant="gold" iconPosition="right" normalIcon="/icons/right.svg" pressedIcon="/icons/right.svg" />
-            <Button text="Download CV" variant="dark" iconPosition="left" normalIcon="/icons/download.svg" pressedIcon="/icons/gold_download.svg" />
+            <Button
+              text="View Projects"
+              variant="gold"
+              iconPosition="right"
+              normalIcon="/icons/right.svg"
+              pressedIcon="/icons/right.svg"
+            />
+
+            <Button
+              text="Download CV"
+              variant="dark"
+              iconPosition="left"
+              normalIcon="/icons/download.svg"
+              pressedIcon="/icons/gold_download.svg"
+            />
           </div>
         </div>
 
       </div>
 
-      {/* ================= MOBILE LAYOUT (NO OVERLAP) ================= */}
-      <div className="md:hidden flex flex-col items-center px-6 pt-40 pb-10 gap-35">
-          
-          {/* LEFT DECORATION IMAGE */}
-        <div className="absolute -left-2.5 top-0 z-0 pointer-events-none">
-          <Image
-            src="/images/Golden tree1.svg"
-            alt="decoration"
-            width={800}
-            height={800}
-            className="object-contain"
+      {/* ================= MOBILE LAYOUT ================= */}
+      <div className="md:hidden flex flex-col items-center px-6 pt-32 pb-10">
+
+        <div className="relative w-full h-90 flex justify-center select-none">
+
+          <img
+            src="/images/Frame 5.png"
+            alt="Profile"
+            className="absolute z-4 top-20 pointer-events-none"
+            draggable={false}
           />
+
+          <img
+            src="/images/Frame 4.png"
+            alt="Portfolio"
+            className="absolute z-10 w-72 h-72 top-20 left-1/2 -translate-x-1/2 pointer-events-none"
+            draggable={false}
+          />
+
         </div>
 
-          <div className="scale-200 pointer-events-none">
-        {/* IMAGE FIRST */}
-        <Image
-          src="/images/Hero_Image.svg"
-          alt="profile"
-          width={350}
-          height={350}
-          className="object-contain"
-        />
+        <div className="flex flex-col items-center gap-8">
+
+          <div className="text-center">
+            <p className="text-gray-400 text-lg">
+              Hello, I'm
+            </p>
+
+            <h1 className="text-white text-3xl font-bold">
+              Khaled Ammar
+            </h1>
           </div>
-          
-          <div className="flex flex-col items-center gap-8">
-        {/* TEXT */}
-        <div className="text-center">
-          <p className="text-gray-400 text-lg">Hello, I'm</p>
-          <h1 className="text-white text-3xl font-bold">
-            Khaled Ammar
-          </h1>
-        </div>
 
-        {/* BUTTONS */}
-        <div className="flex justify-center gap-3 w-full">
-            <Button text="View Projects" variant="gold" iconPosition="right" normalIcon="/icons/right.svg" pressedIcon="/icons/right.svg" />
-            <Button text="Download CV" variant="dark" iconPosition="left" normalIcon="/icons/download.svg" pressedIcon="/icons/gold_download.svg" />
-        </div>
+          <div className="flex justify-center gap-3 w-full">
+            <Button
+              text="View Projects"
+              variant="gold"
+              iconPosition="right"
+              normalIcon="/icons/right.svg"
+              pressedIcon="/icons/right.svg"
+            />
 
-          {/* QUOTE */}
-        <h2 className="text-white text-2xl font-bold text-center">
-          Design First 
-          Code later
-        </h2>
+            <Button
+              text="Download CV"
+              variant="dark"
+              iconPosition="left"
+              normalIcon="/icons/download.svg"
+              pressedIcon="/icons/gold_download.svg"
+            />
+          </div>
 
-        {/* SOCIAL (HORIZONTAL) */}
-        <div className="flex gap-3 mt-4">
-
-          <RightSidebar mobile/>
+          <div className="flex gap-3 mt-2">
+            <RightSidebar mobile />
           </div>
         </div>
-
       </div>
-
     </section>
   );
 }

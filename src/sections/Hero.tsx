@@ -71,7 +71,7 @@ export default function Hero() {
       </div>
 
       {/* ================= MOBILE LAYOUT ================= */}
-      <div className="md:hidden flex flex-col items-center px-6 pt-32 pb-10">
+      <div className="md:hidden flex flex-col items-center px-6 pt-12 pb-10">
 
         <div className="relative w-full h-90 flex justify-center select-none">
 
@@ -102,25 +102,27 @@ export default function Hero() {
               Khaled Ammar
             </h1>
           </div>
-
-          <div className="flex justify-center gap-3 w-full">
-            <Button
-              text="View Projects"
-              variant="gold"
-              iconPosition="right"
-              normalIcon="/icons/right.svg"
+          
+          <div className="flex flex-col gap-4 w-full">
+            <Button 
+              text="View Projects" 
+              variant="gold" 
+              iconPosition="right" 
+              normalIcon="/icons/right.svg" 
               pressedIcon="/icons/right.svg"
+              fullWidth
             />
 
-            <Button
-              text="Download CV"
-              variant="dark"
-              iconPosition="left"
-              normalIcon="/icons/download.svg"
+            <Button 
+              text="Download CV" 
+              variant="dark" 
+              iconPosition="left" 
+              normalIcon="/icons/download.svg" 
               pressedIcon="/icons/gold_download.svg"
+              fullWidth
             />
           </div>
-
+          
           <div className="flex gap-3 mt-2">
             <RightSidebar mobile />
           </div>

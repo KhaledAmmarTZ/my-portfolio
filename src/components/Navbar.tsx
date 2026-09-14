@@ -1,142 +1,164 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navItems } from "@/data/navItems";
 import Button from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [active, setActive] = useState("#home");
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // ✅ Scroll Spy (Fixed + Stable)
-  useEffect(() => {
-    const sections = navItems
-      .map((item) => document.querySelector(item.href))
-      .filter(Boolean);
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
-        });
-      },
-      {
-        threshold: 0.6,
-        rootMargin: "-100px 0px -40% 0px",
-      }
-    );
-
-    sections.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="fixed left-0 top-0 z-50 w-full backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
-        {/* LEFT - LOGO */}
-        <div className="text-white font-bold text-2xl">
+        {/* =====================================================
+            LOGO
+        ====================================================== */}
+        <Link
+          href="/"
+          onClick={() => setMenuOpen(false)}
+          className="text-2xl font-bold text-white transition-colors duration-200 hover:text-[#D4AF37]"
+        >
           Khaled Ammar
-        </div>
+        </Link>
 
-        {/* RIGHT SIDE */}
+        {/* =====================================================
+            RIGHT SIDE
+        ====================================================== */}
         <div className="flex items-center gap-10">
 
-          {/* NAV ITEMS */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.label} className="relative group cursor-pointer">
+          {/* =================================================
+              DESKTOP NAV
+          ================================================== */}
+          <ul className="hidden items-center gap-8 md:flex">
+            {navItems.map((item) => {
+              const active = isActive(item.href);
 
-                <a
-                  href={item.href}
-                  onClick={() => setActive(item.href)} 
-                  className={`
-                    transition-colors duration-200
-                    ${active === item.href ? "text-[#D4AF37]" : "text-white"}
-                    group-hover:text-[#D4AF37]
-                  `}
+              return (
+                <li
+                  key={item.label}
+                  className="group relative cursor-pointer"
                 >
-                  {item.label}
-                </a>
+                  <Link
+                    href={item.href}
+                    className={`
+                      transition-colors duration-200
+                      ${
+                        active
+                          ? "text-[#D4AF37]"
+                          : "text-white"
+                      }
+                      group-hover:text-[#D4AF37]
+                    `}
+                  >
+                    {item.label}
+                  </Link>
 
-                {/* GOLD BAR */}
-                <span
-                  className={`
-                    absolute left-0 -bottom-1 h-0.5 bg-[#D4AF37]
-                    transition-all duration-300
-                    ${active === item.href ? "w-full" : "w-0 group-hover:w-full"}
-                  `}
-                />
-              </li>
-            ))}
+                  {/* GOLD BAR */}
+                  <span
+                    className={`
+                      absolute -bottom-1 left-0 h-0.5
+                      bg-[#D4AF37]
+                      transition-all duration-300
+                      ${
+                        active
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      }
+                    `}
+                  />
+                </li>
+              );
+            })}
           </ul>
 
-          {/* CONTACT BUTTON */}
+          {/* =================================================
+              CONTACT BUTTON
+          ================================================== */}
           <div className="hidden md:block">
-            <a
-              href="#contact"
-              onClick={() => setActive("#contact")} 
-            >
+            <Link href="/contact">
               <Button
                 text="Contact"
                 icon={<ArrowRight size={18} />}
                 variant="gold"
               />
-            </a>
+            </Link>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* =================================================
+              MOBILE MENU BUTTON
+          ================================================== */}
           <button
-            className="md:hidden text-white text-2xl"
+            type="button"
+            aria-label={
+              menuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
+            className="text-white transition-colors duration-200 hover:text-[#D4AF37] md:hidden"
           >
-            ☰
+            {menuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
-
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* =====================================================
+          MOBILE MENU
+      ====================================================== */}
       {menuOpen && (
-        <div className="md:hidden px-6 pb-6">
-          <ul className="flex flex-col gap-4">
+        <div className="border-t border-white/10 bg-[#0B0B0F]/95 px-6 pb-6 backdrop-blur-xl md:hidden">
+          <ul className="flex flex-col gap-2 pt-4">
 
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={() => {
-                    setActive(item.href);
-                    setMenuOpen(false);
-                  }}
-                  className={`
-                    block py-2
-                    ${active === item.href ? "text-[#D4AF37]" : "text-white"}
-                  `}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const active = isActive(item.href);
 
-            <div className="pt-4 ">
-              <a
-                href="#contact"
-                onClick={() => {
-                  setActive("#contact");
-                  setMenuOpen(false);
-                }}
+              return (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className={`
+                      block rounded-lg px-3 py-3
+                      transition-colors duration-200
+                      ${
+                        active
+                          ? "bg-[#D4AF37]/10 text-[#D4AF37]"
+                          : "text-white hover:bg-white/5 hover:text-[#D4AF37]"
+                      }
+                    `}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+
+            {/* MOBILE CONTACT */}
+            <li className="pt-4">
+              <Link
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
               >
-                <Button fullWidth text="Contact" variant="gold" />
-              </a>
-            </div>
-
+                <Button
+                  fullWidth
+                  text="Contact"
+                  variant="gold"
+                  icon={<ArrowRight size={18} />}
+                />
+              </Link>
+            </li>
           </ul>
         </div>
       )}

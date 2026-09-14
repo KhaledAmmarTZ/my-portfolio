@@ -3,6 +3,7 @@
 import ProjectCarousel from "@/components/ProjectCarousel";
 import { projects } from "@/data/projects";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 export default function Projects() {
   return (
@@ -26,16 +27,17 @@ export default function Projects() {
                 Featured Work
               </span>
             </div>
-            
             {/* Button */}
             <div className="hidden md:flex w-fit">
-              <Button
-                text="see more project"
-                variant="gold"
-                iconPosition="right"
-                normalIcon="/icons/right.svg"
-                pressedIcon="/icons/right.svg"
-              />
+              <Link href="/projects">
+                <Button
+                  text="see more project"
+                  variant="gold"
+                  iconPosition="right"
+                  normalIcon="/icons/right.svg"
+                  pressedIcon="/icons/right.svg"
+                />
+              </Link>
             </div>
 
           </div>

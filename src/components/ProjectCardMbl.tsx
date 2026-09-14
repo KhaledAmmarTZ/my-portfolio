@@ -19,7 +19,7 @@ export default function ProjectCardMbl({
         overflow-hidden
         rounded-[10px]
         border border-[#D4AF37]/60
-        bg-black
+        bg-white/5
       "
     >
       {/* ================= PROJECT IMAGE ================= */}

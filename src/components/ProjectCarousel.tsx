@@ -1,6 +1,7 @@
 import ProjectCardDesk from "@/components/ProjectCardDesk";
 import ProjectCardMbl from "@/components/ProjectCardMbl";
 import type { Project } from "@/data/projects";
+import Button from "@/components/ui/Button";
 
 type Props = {
   projects: Project[];
@@ -40,13 +41,24 @@ export default function ProjectCarousel({ projects }: Props) {
 
       {/* ================= MOBILE ================= */}
       <div className="lg:hidden mb-24">
-        <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 px-4 md:gap-10 md:px-6">
+        <div className="flex w-full flex-col gap-8">
           {visibleProjects.map((project) => (
             <ProjectCardMbl
               key={project.id}
               project={project}
             />
           ))}
+        </div>
+        {/* Button */}
+        <div className=" mt-10 flex flex-col  w-full">
+          <Button
+            text="see more project"
+            variant="gold"
+            iconPosition="right"
+            normalIcon="/icons/right.svg"
+            pressedIcon="/icons/right.svg"
+            fullWidth
+          />
         </div>
       </div>
 

@@ -254,7 +254,7 @@ export default function About() {
       </div>
 
       {/* ================= MOBILE ================= */}
-      <div className="relative z-10 md:hidden">
+      <div className="relative z-10 md:hidden pb-16">
 
         {/* Heading */}
         <div>
@@ -371,88 +371,104 @@ export default function About() {
                 pressedIcon="/icons/right.svg"
                 fullWidth
                 />
-            </div>
+          </div>
             
             {/* Skills / Focus */}
-<div className="mt-8 grid w-full grid-cols-2 gap-3">
-  {[
-  { title: "UI/UX", subtitle: "Design" },
-  { title: "Frontend", subtitle: "Development" },
-  { title: "Motion Graphic Designer", subtitle: "Design" },
-  { title: "AI", subtitle: "Exploration" },
-].map((skill, index) => {
-  const pressed = pressedSkill === index;
+          <div className="mt-8 grid w-full grid-cols-2 gap-3">
+            {[
+            { title: "UI/UX", subtitle: "Design" },
+            { title: "Frontend", subtitle: "Development" },
+            { title: "Motion Graphic Designer", subtitle: "Design" },
+            { title: "AI", subtitle: "Exploration" },
+          ].map((skill, index) => {
+            const pressed = pressedSkill === index;
 
-  return (
-    <div
-      key={skill.title}
-      className="
-        relative
-        min-w-0
-        overflow-hidden
-        rounded-2xl
-        p-px
-      "
-      onTouchStart={() => setPressedSkill(index)}
-      onTouchEnd={() => setPressedSkill(null)}
-      onTouchCancel={() => setPressedSkill(null)}
-    >
-      {/* Rotating border glow */}
-      <div
-        className="
-          absolute
-          -inset-full
-          animate-[spin_5s_linear_infinite]
-          bg-[conic-gradient(from_0deg,transparent_0deg,transparent_300deg,#D4AF37_340deg,transparent_360deg)]
-        "
-      />
+            return (
+              <div
+                key={skill.title}
+                className="
+                  relative
+                  min-w-0
+                  overflow-hidden
+                  rounded-2xl
+                  p-px
+                "
+                onTouchStart={() => setPressedSkill(index)}
+                onTouchEnd={() => setPressedSkill(null)}
+                onTouchCancel={() => setPressedSkill(null)}
+              >
+                {/* Rotating border glow */}
+                <div
+                  className="
+                    absolute
+                    -inset-full
+                    animate-[spin_5s_linear_infinite]
+                    bg-[conic-gradient(from_0deg,transparent_0deg,transparent_300deg,#D4AF37_340deg,transparent_360deg)]
+                  "
+                />
 
-        {/* Card */}
-        <div
-          className={`
-            relative
-            flex
-            min-h-20.5
-            w-full
-            items-center
-            rounded-2xl
-            bg-[#0B0B0F]
-            px-4
-            py-3
-            transition-all
-            duration-300
-            ${pressed ? "bg-[#111116]" : ""}
-          `}
-        >
-          {/* Inner glow */}
-          <div
-            className={`
-              pointer-events-none
-              absolute
-              inset-0
-              rounded-2xl
-              shadow-[inset_0_0_25px_rgba(212,175,55,0.08)]
-              transition-opacity
-              duration-300
-              ${pressed ? "opacity-100" : "opacity-0"}
-            `}
-          />
+                  {/* Card */}
+                  <div
+                    className={`
+                      relative
+                      flex
+                      min-h-20.5
+                      w-full
+                      items-center
+                      rounded-2xl
+                      bg-[#0B0B0F]
+                      px-4
+                      py-3
+                      transition-all
+                      duration-300
+                      ${pressed ? "bg-[#111116]" : ""}
+                    `}
+                  >
+                    {/* Inner glow */}
+                    <div
+                      className={`
+                        pointer-events-none
+                        absolute
+                        inset-0
+                        rounded-2xl
+                        shadow-[inset_0_0_25px_rgba(212,175,55,0.08)]
+                        transition-opacity
+                        duration-300
+                        ${pressed ? "opacity-100" : "opacity-0"}
+                      `}
+                    />
 
-          <div className="relative z-10 min-w-0">
-            <p className="wrap-break-word text-sm font-semibold leading-tight text-white">
-              {skill.title}
-            </p>
+                    <div className="relative z-10 min-w-0">
+                      <p className="wrap-break-word text-sm font-semibold leading-tight text-white">
+                        {skill.title}
+                      </p>
 
-            <p className="mt-1 text-xs text-gray-500">
-              {skill.subtitle}
-            </p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        {skill.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
-    );
-  })}
-</div>
-        </div>
+        <div
+          className="
+            pointer-events-none
+            absolute
+            bottom-0
+            left-0
+            right-0
+            z-20
+            h-32
+            bg-linear-to-t
+            from-[#0B0B0F]
+            via-[#0B0B0F]/80
+            to-transparent
+            blur-xl
+          "
+        />
       </div>
     </section>
   );

@@ -11,7 +11,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative min-h-screen overflow-hidden bg-[#0B0B0F] px-6 py-24 md:px-12 lg:px-20"
+      className="relative min-h-screen overflow-hidden bg-[#0B0B0F] px-6 md:px-12 lg:px-20"
     >
       {/* Background glow */}
       <div className="pointer-events-none absolute -left-40 top-1/3 h-96 w-96 rounded-full bg-[#D4AF37]/10 blur-[120px]" />

@@ -1,4 +1,28 @@
-export const projects = [
+export type Project = {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+
+  overview: string;
+
+  problem: string[];
+  solution: string[];
+
+  info: {
+    client: string;
+    duration: string;
+    role: string;
+  };
+
+  technologies: string[];
+  impact: string;
+
+  github?: string;
+  figma?: string;
+};
+
+export const projects: Project[] = [
   {
     id: 1,
     title: "AI Content Studio",
@@ -28,10 +52,19 @@ export const projects = [
       role: "Full Stack Developer",
     },
 
-    technologies: ["React", "Next.js", "TypeScript", "WebSocket", "Tailwind"],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "WebSocket",
+      "Tailwind",
+    ],
 
     impact:
       "Reduced content creation time by 65% and improved system efficiency with real-time collaboration support.",
+
+    github: "https://github.com/yourusername/natureverse",
+    figma: "https://www.figma.com/design/your-file",
   },
 
   {
@@ -63,10 +96,17 @@ export const projects = [
       role: "UI/UX Designer & Frontend Developer",
     },
 
-    technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
+    technologies: [
+      "Next.js",
+      "Framer Motion",
+      "Tailwind CSS",
+    ],
 
     impact:
       "Increased user engagement by 40% and improved conversion rates significantly.",
+
+    github: "https://github.com/yourusername/natureverse",
+    figma: "https://www.figma.com/design/your-file",
   },
 
   {
@@ -98,7 +138,12 @@ export const projects = [
       role: "Backend Developer",
     },
 
-    technologies: ["Laravel", "MySQL", "PHP", "Arduino"],
+    technologies: [
+      "Laravel",
+      "MySQL",
+      "PHP",
+      "Arduino",
+    ],
 
     impact:
       "Improved operational efficiency and reduced manual errors significantly.",
@@ -133,9 +178,91 @@ export const projects = [
       role: "Frontend Developer",
     },
 
-    technologies: ["React", "Next.js", "Tailwind CSS"],
+    technologies: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+    ],
 
     impact:
       "Enabled users to build professional portfolios in under 30 minutes.",
   },
+  {
+    id: 5,
+    title: "Portfolio Builder SaaS",
+    category: "SaaS",
+    image: "/images/images(1).jpg",
+
+    overview:
+      "A no-code portfolio builder that allows users to create professional portfolios easily.",
+
+    problem: [
+      "Non-technical users struggled to build professional portfolios",
+      "Lack of customizable templates",
+      "Poor UI in existing portfolio tools",
+      "No real-time preview system",
+    ],
+
+    solution: [
+      "Built drag-and-drop UI system",
+      "Created reusable template library",
+      "Designed modern clean UI system",
+      "Implemented real-time preview engine",
+    ],
+
+    info: {
+      client: "Startup Idea",
+      duration: "1.5 Months",
+      role: "Frontend Developer",
+    },
+
+    technologies: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+    ],
+
+    impact:
+      "Enabled users to build professional portfolios in under 30 minutes.",
+  },
+  {
+    id: 6,
+    title: "Railway Management System",
+    category: "Enterprise",
+    image: "/images/images.jpg",
+
+    overview:
+      "A complete railway management system for scheduling, routing, and operational control.",
+
+    problem: [
+      "Manual scheduling causing inefficiencies",
+      "Difficulty in managing dynamic train routes",
+      "Lack of real-time tracking system",
+      "Complexity in route optimization",
+    ],
+
+    solution: [
+      "Built automated scheduling engine using Laravel",
+      "Designed dynamic route mapping system",
+      "Integrated real-time tracking dashboard",
+      "Optimized database structure for performance",
+    ],
+
+    info: {
+      client: "Academic Project",
+      duration: "4 Months",
+      role: "Backend Developer",
+    },
+
+    technologies: [
+      "Laravel",
+      "MySQL",
+      "PHP",
+      "Arduino",
+    ],
+
+    impact:
+      "Improved operational efficiency and reduced manual errors significantly.",
+  },
+  
 ];

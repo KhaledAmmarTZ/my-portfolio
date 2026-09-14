@@ -12,9 +12,13 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center mb-16">
-          <span className="text-[#D4AF37] text-sm">
-            Featured Work
-          </span>
+          <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-[#D4AF37]" />
+
+              <span className="text-sm uppercase tracking-[0.3em] text-[#D4AF37]">
+                Featured Work
+              </span>
+            </div>
 
           <h2 className="mt-4 text-5xl text-white">
             Selected Projects

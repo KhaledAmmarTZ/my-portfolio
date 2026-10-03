@@ -1,0 +1,269 @@
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: clip;
+  font-family: Arial, sans-serif;
+}
+
+.page h1 {
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+  overflow-wrap: break-word;
+}
+
+.page header,
+.page button,
+.page header a {
+  font-family: "DM Mono", monospace;
+}
+
+/* Full-page layout */
+.scaledDesign {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  isolation: isolate;
+}
+
+/* Headline entrance */
+@keyframes constructionRise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  min-width: 0;
+  animation: constructionRise 0.8s
+    cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Blueprint outlines draw themselves */
+@keyframes constructionDraw {
+  0% {
+    stroke-dashoffset: 1;
+  }
+
+  45%,
+  80% {
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    stroke-dashoffset: -1;
+  }
+}
+
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: constructionDraw 6s ease-in-out infinite;
+}
+
+/* Pencil traces the interface */
+@keyframes constructionTrace {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(180px, 0);
+  }
+
+  50% {
+    transform: translate(180px, 90px);
+  }
+
+  75% {
+    transform: translate(0, 90px);
+  }
+}
+
+.trace {
+  animation: constructionTrace 6s ease-in-out infinite;
+}
+
+/* Blinking underscore */
+@keyframes constructionCaret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: constructionCaret 1s steps(1) infinite;
+}
+
+/* SVG illustration — desktop right side */
+.art {
+  position: absolute;
+  top: 0;
+  right: 8vw;
+  z-index: 0;
+  display: block;
+  width: 70%;
+  height: 100%;
+  max-width: none;
+  opacity: 1;
+  transform: scale(0.92);
+  transform-origin: right center;
+  pointer-events: none;
+}
+
+/* Keep header and content above the illustration */
+.scaledDesign > header,
+.scaledDesign > section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop content positioning */
+@media (min-width: 1024px) {
+  .scaledDesign > section {
+    padding-left: 18vw;
+    padding-right: 24px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .art {
+    right: -4%;
+    width: 72%;
+    height: 100%;
+    opacity: 0.35;
+    transform: scale(0.88);
+    transform-origin: right center;
+  }
+
+  .scaledDesign > section {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+
+
+/* Mobile: enlarged, centered SVG above the content */
+@media (max-width: 640px) {
+  .scaledDesign {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* Header */
+  .scaledDesign > header {
+    flex: 0 0 auto;
+    padding: 20px 24px;
+  }
+
+  /* Visible mobile illustration frame */
+.artFrame {
+  position: relative;
+  flex: 0 0 auto;
+  width: calc(100% - 10px) !important;
+  height: calc((100vw - 20px) * 0.75);
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: hidden;
+}
+
+/* Enlarged SVG centered inside the padded frame */
+.artFrame > svg.art {
+  position: absolute !important;
+  top: 15% !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: -70px !important;
+
+  width: calc(100% - 10px) !important;
+  max-width: none !important;
+  height: auto !important;
+
+  display: block;
+  margin: 0 !important;
+  opacity: 1;
+  transform: scale(1.6) !important;
+  transform-origin: center center;
+}
+
+  /* Content below the illustration */
+  .scaledDesign > section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    width: 100%;
+    min-height: 0;
+    padding: 1px 24px 150px;
+  }
+
+  /* Preserve the existing content styling */
+  .scaledDesign > section > div {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 12px;
+  }
+
+  /* Responsive heading */
+  .scaledDesign > section h1 {
+    font-size: clamp(2.5rem, 9vw, 3.7rem);
+    line-height: 0.95;
+  }
+
+  /* Responsive description */
+  .scaledDesign > section > div > p:not(:first-child) {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 380px) {
+  .scaledDesign > header {
+    padding: 16px 18px;
+  }
+
+  .art {
+    max-height: 30svh;
+  }
+
+  .scaledDesign > section {
+    padding: 18px 18px 30px;
+  }
+
+  .scaledDesign > section > div {
+    padding: 8px;
+  }
+
+  .scaledDesign > section h1 {
+    font-size: clamp(2.2rem, 10vw, 2.8rem);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .draw,
+  .trace,
+  .caret {
+    animation: none !important;
+  }
+}

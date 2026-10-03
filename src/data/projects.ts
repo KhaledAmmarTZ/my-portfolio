@@ -27,7 +27,7 @@ export const projects: Project[] = [
     id: 1,
     title: "AI Content Studio",
     category: "Web Application",
-    image: "/images/images.jpg",
+    image: "/images/Natureverse Cover.png",
 
     overview:
       "An AI-powered content generation platform designed to help creators generate blogs, ads, and scripts efficiently.",
@@ -69,200 +69,131 @@ export const projects: Project[] = [
 
   {
     id: 2,
-    title: "Luxury Fashion Platform",
-    category: "E-Commerce",
-    image: "/images/images(1).jpg",
+    title: "Coming Soon",
+    category: "Coming Soon",
+    image: "/motion/ComingSoonCard1.gif",
 
-    overview:
-      "A premium fashion e-commerce platform designed to deliver a luxury shopping experience.",
 
-    problem: [
-      "Lack of immersive shopping experiences in traditional e-commerce platforms",
-      "Poor mobile responsiveness across high-end fashion sites",
-      "Low user engagement due to static UI designs",
-      "Limited personalization features",
-    ],
+    overview: "Coming Soon",
 
-    solution: [
-      "Designed a motion-rich UI using Framer Motion",
-      "Built fully responsive mobile-first interface",
-      "Integrated dynamic product recommendation system",
-      "Implemented personalized user experience flows",
-    ],
+    problem: ["Coming Soon"],
+
+    solution: ["Coming Soon"],
 
     info: {
-      client: "Fashion Brand X",
-      duration: "2.5 Months",
-      role: "UI/UX Designer & Frontend Developer",
+      client: "Coming Soon",
+      duration: "Coming Soon",
+      role: "Coming Soon",
     },
 
-    technologies: [
-      "Next.js",
-      "Framer Motion",
-      "Tailwind CSS",
-    ],
+    technologies: ["Coming Soon"],
 
-    impact:
-      "Increased user engagement by 40% and improved conversion rates significantly.",
+    impact: "Coming Soon",
 
-    github: "https://github.com/yourusername/natureverse",
-    figma: "https://www.figma.com/design/your-file",
+
   },
 
   {
     id: 3,
-    title: "Railway Management System",
-    category: "Enterprise",
-    image: "/images/images.jpg",
+    title: "Coming Soon",
+    category: "Coming Soon",
+    image: "/motion/ComingSoonCard2.gif",
 
-    overview:
-      "A complete railway management system for scheduling, routing, and operational control.",
 
-    problem: [
-      "Manual scheduling causing inefficiencies",
-      "Difficulty in managing dynamic train routes",
-      "Lack of real-time tracking system",
-      "Complexity in route optimization",
-    ],
+    overview: "Coming Soon",
 
-    solution: [
-      "Built automated scheduling engine using Laravel",
-      "Designed dynamic route mapping system",
-      "Integrated real-time tracking dashboard",
-      "Optimized database structure for performance",
-    ],
+    problem: ["Coming Soon"],
+
+    solution: ["Coming Soon"],
 
     info: {
-      client: "Academic Project",
-      duration: "4 Months",
-      role: "Backend Developer",
+      client: "Coming Soon",
+      duration: "Coming Soon",
+      role: "Coming Soon",
     },
 
-    technologies: [
-      "Laravel",
-      "MySQL",
-      "PHP",
-      "Arduino",
-    ],
+    technologies: ["Coming Soon"],
 
-    impact:
-      "Improved operational efficiency and reduced manual errors significantly.",
+    impact: "Coming Soon",
+
+
   },
 
   {
     id: 4,
-    title: "Portfolio Builder SaaS",
-    category: "SaaS",
-    image: "/images/images(1).jpg",
+    title: "Coming Soon",
+    category: "Coming Soon",
+    image: "/motion/ComingSoonCard3.gif",
 
-    overview:
-      "A no-code portfolio builder that allows users to create professional portfolios easily.",
 
-    problem: [
-      "Non-technical users struggled to build professional portfolios",
-      "Lack of customizable templates",
-      "Poor UI in existing portfolio tools",
-      "No real-time preview system",
-    ],
+    overview: "Coming Soon",
 
-    solution: [
-      "Built drag-and-drop UI system",
-      "Created reusable template library",
-      "Designed modern clean UI system",
-      "Implemented real-time preview engine",
-    ],
+    problem: ["Coming Soon"],
+
+    solution: ["Coming Soon"],
 
     info: {
-      client: "Startup Idea",
-      duration: "1.5 Months",
-      role: "Frontend Developer",
+      client: "Coming Soon",
+      duration: "Coming Soon",
+      role: "Coming Soon",
     },
 
-    technologies: [
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-    ],
+    technologies: ["Coming Soon"],
 
-    impact:
-      "Enabled users to build professional portfolios in under 30 minutes.",
+    impact: "Coming Soon",
+
+
   },
+
   {
     id: 5,
-    title: "Portfolio Builder SaaS",
-    category: "SaaS",
-    image: "/images/images(1).jpg",
+    title: "Coming Soon",
+    category: "Coming Soon",
+    image: "/motion/ComingSoonCard4.gif",
 
-    overview:
-      "A no-code portfolio builder that allows users to create professional portfolios easily.",
 
-    problem: [
-      "Non-technical users struggled to build professional portfolios",
-      "Lack of customizable templates",
-      "Poor UI in existing portfolio tools",
-      "No real-time preview system",
-    ],
+    overview: "Coming Soon",
 
-    solution: [
-      "Built drag-and-drop UI system",
-      "Created reusable template library",
-      "Designed modern clean UI system",
-      "Implemented real-time preview engine",
-    ],
+    problem: ["Coming Soon"],
+
+    solution: ["Coming Soon"],
 
     info: {
-      client: "Startup Idea",
-      duration: "1.5 Months",
-      role: "Frontend Developer",
+      client: "Coming Soon",
+      duration: "Coming Soon",
+      role: "Coming Soon",
     },
 
-    technologies: [
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-    ],
+    technologies: ["Coming Soon"],
 
-    impact:
-      "Enabled users to build professional portfolios in under 30 minutes.",
+    impact: "Coming Soon",
+
+
   },
+
   {
     id: 6,
-    title: "Railway Management System",
-    category: "Enterprise",
-    image: "/images/images.jpg",
+    title: "Coming Soon",
+    category: "Coming Soon",
+    image: "/motion/ComingSoonCard1.gif",
 
-    overview:
-      "A complete railway management system for scheduling, routing, and operational control.",
 
-    problem: [
-      "Manual scheduling causing inefficiencies",
-      "Difficulty in managing dynamic train routes",
-      "Lack of real-time tracking system",
-      "Complexity in route optimization",
-    ],
+    overview: "Coming Soon",
 
-    solution: [
-      "Built automated scheduling engine using Laravel",
-      "Designed dynamic route mapping system",
-      "Integrated real-time tracking dashboard",
-      "Optimized database structure for performance",
-    ],
+    problem: ["Coming Soon"],
+
+    solution: ["Coming Soon"],
 
     info: {
-      client: "Academic Project",
-      duration: "4 Months",
-      role: "Backend Developer",
+      client: "Coming Soon",
+      duration: "Coming Soon",
+      role: "Coming Soon",
     },
 
-    technologies: [
-      "Laravel",
-      "MySQL",
-      "PHP",
-      "Arduino",
-    ],
+    technologies: ["Coming Soon"],
 
-    impact:
-      "Improved operational efficiency and reduced manual errors significantly.",
+    impact: "Coming Soon",
+
   },
-  
+
 ];

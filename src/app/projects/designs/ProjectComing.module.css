@@ -1,9 +1,7 @@
-
 .page {
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
-  overflow-x: clip;
+
+
   font-family: Arial, sans-serif;
 }
 
@@ -18,7 +16,10 @@
   font-family: "DM Mono", monospace;
 }
 
-/* Full-page layout */
+/* =========================================================
+   FULL-PAGE LAYOUT
+   ========================================================= */
+
 .scaledDesign {
   position: relative;
   display: flex;
@@ -29,7 +30,10 @@
   isolation: isolate;
 }
 
-/* Headline entrance */
+/* =========================================================
+   HEADLINE ENTRANCE
+   ========================================================= */
+
 @keyframes constructionRise {
   from {
     opacity: 0;
@@ -48,7 +52,10 @@
     cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
-/* Blueprint outlines draw themselves */
+/* =========================================================
+   BLUEPRINT OUTLINES
+   ========================================================= */
+
 @keyframes constructionDraw {
   0% {
     stroke-dashoffset: 1;
@@ -70,7 +77,10 @@
   animation: constructionDraw 6s ease-in-out infinite;
 }
 
-/* Pencil traces the interface */
+/* =========================================================
+   PENCIL TRACE
+   ========================================================= */
+
 @keyframes constructionTrace {
   0%,
   100% {
@@ -94,7 +104,10 @@
   animation: constructionTrace 6s ease-in-out infinite;
 }
 
-/* Blinking underscore */
+/* =========================================================
+   BLINKING CARET
+   ========================================================= */
+
 @keyframes constructionCaret {
   50% {
     opacity: 0;
@@ -105,30 +118,42 @@
   animation: constructionCaret 1s steps(1) infinite;
 }
 
-/* SVG illustration — desktop right side */
+/* =========================================================
+   DEFAULT / DESKTOP SVG
+   ========================================================= */
+
 .art {
   position: absolute;
   top: 0;
   right: 8vw;
   z-index: 0;
+
   display: block;
+
   width: 70%;
   height: 100%;
   max-width: none;
+
   opacity: 1;
+
   transform: scale(0.92);
   transform-origin: right center;
+
   pointer-events: none;
 }
 
-/* Keep header and content above the illustration */
+/* Keep header and content above illustration */
 .scaledDesign > header,
 .scaledDesign > section {
   position: relative;
   z-index: 1;
 }
 
-/* Desktop content positioning */
+/* =========================================================
+   DESKTOP
+   1024px+
+   ========================================================= */
+
 @media (min-width: 1024px) {
   .scaledDesign > section {
     padding-left: 18vw;
@@ -136,27 +161,12 @@
   }
 }
 
-/* Tablet */
+/* =========================================================
+   TABLET
+   641px - 1023px
+   ========================================================= */
+
 @media (min-width: 641px) and (max-width: 1023px) {
-  .art {
-    right: -4%;
-    width: 72%;
-    height: 100%;
-    opacity: 0.35;
-    transform: scale(0.88);
-    transform-origin: right center;
-  }
-
-  .scaledDesign > section {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-
-
-/* Mobile: enlarged, centered SVG above the content */
-@media (max-width: 640px) {
   .scaledDesign {
     display: flex;
     flex-direction: column;
@@ -165,88 +175,281 @@
     min-height: 100svh;
   }
 
-  /* Header */
+  /* -------------------------
+     Header
+     ------------------------- */
+
   .scaledDesign > header {
+    position: relative;
+    z-index: 2;
+
     flex: 0 0 auto;
-    padding: 20px 24px;
+
+    padding: 24px 32px;
   }
 
-  /* Visible mobile illustration frame */
-.artFrame {
-  position: relative;
-  flex: 0 0 auto;
-  width: calc(100% - 10px) !important;
-  height: calc((100vw - 20px) * 0.75);
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  overflow: hidden;
-}
+  /* -------------------------
+     Dedicated SVG area
+     ------------------------- */
 
-/* Enlarged SVG centered inside the padded frame */
-.artFrame > svg.art {
-  position: absolute !important;
-  top: 15% !important;
-  right: auto !important;
-  bottom: auto !important;
-  left: -70px !important;
+  .artFrame {
+    position: relative;
 
-  width: calc(100% - 10px) !important;
-  max-width: none !important;
-  height: auto !important;
+    flex: 0 0 auto;
 
-  display: block;
-  margin: 0 !important;
-  opacity: 1;
-  transform: scale(1.6) !important;
-  transform-origin: center center;
-}
+    width: 100%;
 
-  /* Content below the illustration */
+    /*
+      The SVG gets its own vertical area.
+      Content starts only after this frame.
+    */
+    height: 50vh;
+    min-height: 300px;
+    max-height: 800px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+  }
+
+  /* -------------------------
+     Tablet SVG
+     ------------------------- */
+
+  .artFrame > svg.art {
+    position: absolute !important;
+
+    top: 40% !important;
+    left: 40% !important;
+
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 120% !important;
+    max-width: none !important;
+
+    height: auto !important;
+
+    display: block;
+
+    margin: 0 !important;
+
+    transform: translate(-50%, -50%) scale(0.9) !important;
+
+    transform-origin: center center;
+  }
+
+  /* -------------------------
+     Tablet content
+     ------------------------- */
+
   .scaledDesign > section {
     position: relative;
     z-index: 1;
+
     display: flex;
+
     flex: 1 0 auto;
+
     align-items: center;
+
     width: 100%;
     min-height: 0;
-    padding: 1px 24px 150px;
+
+    /*
+      Space between SVG and content
+    */
+    padding: 10px 24px 100px;
+
+    box-sizing: border-box;
   }
 
-  /* Preserve the existing content styling */
   .scaledDesign > section > div {
     width: 100%;
-    max-width: 480px;
+    max-width: 700px;
+
     margin: 0 auto;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   640px and below
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .scaledDesign {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* -------------------------
+     Header
+     ------------------------- */
+
+  .scaledDesign > header {
+    position: relative;
+    z-index: 2;
+
+    flex: 0 0 auto;
+
+    padding: 20px 24px;
+  }
+
+  /* -------------------------
+     Dedicated mobile SVG area
+     ------------------------- */
+
+  .artFrame {
+    position: relative;
+
+    flex: 0 0 auto;
+
+    width: calc(100% - 10px) !important;
+
+    /*
+      Fixed relationship to viewport width.
+      This frame reserves the SVG's space.
+    */
+    height: calc((100vw - 20px) * 0.75);
+
+    box-sizing: border-box;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    overflow: hidden;
+  }
+
+  /* -------------------------
+     Mobile SVG
+     ------------------------- */
+
+  .artFrame > svg.art {
+    position: absolute !important;
+
+    top: 15% !important;
+
+    left: -60px !important;
+
+    right: auto !important;
+    bottom: auto !important;
+
+    width: calc(100% - 10px) !important;
+
+    max-width: none !important;
+
+    height: auto !important;
+
+    display: block;
+
+    margin: 0 !important;
+
+    opacity: 1;
+
+    transform: scale(1.6) !important;
+
+    transform-origin: center center;
+  }
+
+  /* -------------------------
+     Mobile content
+     ------------------------- */
+
+  .scaledDesign > section {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+
+    flex: 1 0 auto;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 0;
+
+    /*
+      IMPORTANT:
+      Content starts after .artFrame.
+      The top padding gives additional separation.
+    */
+    padding: 28px 24px 150px;
+
+    box-sizing: border-box;
+  }
+
+  .scaledDesign > section > div {
+    width: 100%;
+
+    max-width: 480px;
+
+    margin: 0 auto;
+
     padding: 12px;
   }
 
-  /* Responsive heading */
+  /* -------------------------
+     Mobile heading
+     ------------------------- */
+
   .scaledDesign > section h1 {
     font-size: clamp(2.5rem, 9vw, 3.7rem);
     line-height: 0.95;
   }
 
-  /* Responsive description */
+  /* -------------------------
+     Mobile description
+     ------------------------- */
+
   .scaledDesign > section > div > p:not(:first-child) {
     font-size: 14px;
     line-height: 1.7;
   }
 }
 
-/* Very narrow phones */
+/* =========================================================
+   VERY NARROW PHONES
+   380px and below
+   ========================================================= */
+
 @media (max-width: 380px) {
   .scaledDesign > header {
     padding: 16px 18px;
   }
 
-  .art {
-    max-height: 30svh;
+  /*
+    Do NOT modify .art directly here.
+    Keep the SVG inside its reserved frame.
+  */
+  .artFrame {
+    width: calc(100% - 10px) !important;
+
+    height: calc((100vw - 20px) * 0.72);
+
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .artFrame > svg.art {
+    left: -55px !important;
+
+    width: calc(100% - 8px) !important;
+
+    transform: scale(1.5) !important;
   }
 
   .scaledDesign > section {
-    padding: 18px 18px 30px;
+    /*
+      Additional separation on very small screens
+    */
+    padding: 24px 18px 80px;
   }
 
   .scaledDesign > section > div {
@@ -258,7 +461,10 @@
   }
 }
 
-/* Accessibility */
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .rise,
   .draw,

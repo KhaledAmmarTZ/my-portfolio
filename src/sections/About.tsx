@@ -67,6 +67,7 @@ export default function About() {
                 iconPosition="right"
                 normalIcon="/icons/right.svg"
                 pressedIcon="/icons/right.svg"
+                href="/about"
                 />
             </div>
           </div>
@@ -370,6 +371,7 @@ export default function About() {
                 normalIcon="/icons/right.svg"
                 pressedIcon="/icons/right.svg"
                 fullWidth
+                href="/about"
                 />
           </div>
             

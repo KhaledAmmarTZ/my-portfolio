@@ -2,6 +2,7 @@ import ProjectCardDesk from "@/components/ProjectCardDesk";
 import ProjectCardMbl from "@/components/ProjectCardMbl";
 import type { Project } from "@/data/projects";
 import Button from "@/components/ui/Button";
+import { Link } from "lucide-react";
 
 type Props = {
   projects: Project[];
@@ -50,14 +51,14 @@ export default function ProjectCarousel({ projects }: Props) {
           ))}
         </div>
         {/* Button */}
-        <div className=" mt-10 flex flex-col  w-full">
+        <div className="mt-10 w-full">
           <Button
-            text="see more project"
+            text="See More Projects"
             variant="gold"
             iconPosition="right"
             normalIcon="/icons/right.svg"
             pressedIcon="/icons/right.svg"
-            fullWidth
+            href="/projects"
           />
         </div>
       </div>

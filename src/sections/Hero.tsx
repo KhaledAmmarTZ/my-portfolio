@@ -88,12 +88,13 @@ export default function Hero() {
           </h1>
 
           <div className="flex gap-4">
-            <Button
-              text="View Projects"
-              variant="gold"
-              iconPosition="right"
-              normalIcon="/icons/right.svg"
-              pressedIcon="/icons/right.svg"
+            <Button 
+              text="View Projects" 
+              variant="gold" 
+              iconPosition="right" 
+              normalIcon="/icons/right.svg" 
+              pressedIcon="/icons/right.svg" 
+              href="/projects"
             />
 
             <Button
@@ -143,13 +144,14 @@ export default function Hero() {
 
           <div className="flex flex-col gap-4 w-full">
 
-            <Button
-              text="View Projects"
-              variant="gold"
-              iconPosition="right"
-              normalIcon="/icons/right.svg"
-              pressedIcon="/icons/right.svg"
+            <Button 
+              text="View Projects" 
+              variant="gold" 
+              iconPosition="right" 
+              normalIcon="/icons/right.svg" 
+              pressedIcon="/icons/right.svg" 
               fullWidth
+              href="/projects"
             />
 
             <Button

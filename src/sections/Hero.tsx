@@ -57,7 +57,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative bg-[#0B0B0F] min-h-screen overflow-hidden"
+      className="relative  min-h-screen overflow-hidden"
     >
       {/* ================= DESKTOP LAYER ================= */}
       <div className="hidden md:block">

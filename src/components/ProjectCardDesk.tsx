@@ -40,7 +40,7 @@ onClick={openProject}
 onKeyDown={handleKeyDown}
 className={`         relative min-w-0 flex-1
         h-175
-        rounded-[10px]
+        rounded-[5px]
         overflow-hidden
         cursor-pointer
         ${marginTop}

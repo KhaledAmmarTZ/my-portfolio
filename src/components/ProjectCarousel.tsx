@@ -29,7 +29,7 @@ export default function ProjectCarousel({ projects }: Props) {
 
       {/* ================= DESKTOP ================= */}
       <div className="hidden lg:flex justify-center mb-24">
-        <div className="flex items-start gap-2 xl:gap-5 w-full max-w-7xl">
+        <div className="flex items-start gap-1 xl:gap-1 w-full max-w-7xl">
           {visibleProjects.map((project, index) => (
             <ProjectCardDesk
               key={project.id}

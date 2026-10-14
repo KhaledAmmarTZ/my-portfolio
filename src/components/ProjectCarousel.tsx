@@ -2,7 +2,6 @@ import ProjectCardDesk from "@/components/ProjectCardDesk";
 import ProjectCardMbl from "@/components/ProjectCardMbl";
 import type { Project } from "@/data/projects";
 import Button from "@/components/ui/Button";
-import { Link } from "lucide-react";
 
 type Props = {
   projects: Project[];
@@ -26,10 +25,9 @@ export default function ProjectCarousel({ projects }: Props) {
 
   return (
     <div className="w-full">
-
       {/* ================= DESKTOP ================= */}
-      <div className="hidden lg:flex justify-center mb-24">
-        <div className="flex items-start gap-1 xl:gap-1 w-full max-w-7xl">
+      <div className="mb-24 hidden justify-center lg:flex">
+        <div className="flex w-full max-w-7xl items-start gap-1 xl:gap-1">
           {visibleProjects.map((project, index) => (
             <ProjectCardDesk
               key={project.id}
@@ -41,8 +39,8 @@ export default function ProjectCarousel({ projects }: Props) {
       </div>
 
       {/* ================= MOBILE ================= */}
-      <div className="lg:hidden mb-24">
-        <div className="flex w-full flex-col gap-8">
+      <div className="mb-16 lg:hidden">
+        <div className="grid grid-cols-2 items-start gap-x-0.5 gap-y-0.5 sm:gap-x-3 sm:gap-y-4">
           {visibleProjects.map((project) => (
             <ProjectCardMbl
               key={project.id}
@@ -50,19 +48,20 @@ export default function ProjectCarousel({ projects }: Props) {
             />
           ))}
         </div>
-        {/* Button */}
+
         <div className="mt-10 w-full">
-          <Button
-            text="See More Projects"
-            variant="gold"
-            iconPosition="right"
-            normalIcon="/icons/right.svg"
-            pressedIcon="/icons/right.svg"
-            href="/projects"
-          />
+          <div className="w-full [&>a]:flex [&>a]:w-full [&>a]:justify-center [&>a]:text-center [&>button]:flex [&>button]:w-full [&>button]:justify-center [&>button]:text-center">
+            <Button
+              text="See More Projects"
+              variant="gold"
+              iconPosition="right"
+              normalIcon="/icons/right.svg"
+              pressedIcon="/icons/right.svg"
+              href="/projects"
+            />
+          </div>
         </div>
       </div>
-
     </div>
   );
 }

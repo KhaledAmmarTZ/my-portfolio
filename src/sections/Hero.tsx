@@ -1145,7 +1145,7 @@ export default function Hero() {
             <div className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center lg:justify-end">
               <div className="w-full sm:w-auto">
                 <Button
-                  text="View Projects"
+                  text="View My Work"
                   variant="gold"
                   iconPosition="right"
                   normalIcon="/icons/right.svg"

@@ -9,9 +9,9 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="bg-[#0B0B0F] py-24"
+      className="bg-background py-24 text-foreground transition-colors duration-300"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto w-full px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
 
         {/* ================= HEADER ================= */}
         <div className="mb-16">
@@ -27,8 +27,9 @@ export default function Projects() {
                 Featured Work
               </span>
             </div>
+
             {/* Button */}
-            <div className="hidden md:flex w-fit">
+            <div className="hidden w-fit md:flex">
               <Link href="/projects">
                 <Button
                   text="see more project"
@@ -39,21 +40,18 @@ export default function Projects() {
                 />
               </Link>
             </div>
-
           </div>
 
           {/* Center Heading */}
           <div className="mt-4 text-center">
-
-            <h2 className="text-5xl text-white">
+            <h2 className="text-5xl text-foreground">
               Selected Projects
             </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-[#A1A1AA]">
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               A showcase of recent work spanning design systems,
               web applications, and digital experiences.
             </p>
-
           </div>
 
         </div>

@@ -9,8 +9,8 @@ import Button from "@/components/ui/Button";
 import { ArrowRight, Menu, X, ArrowUpRight } from "lucide-react";
 
 const INTRO_KEY = "logo-intro-seen";
-const INTRO_HOLD_MS = 800; // how long the big logo stays centered
-const INTRO_MOVE_MS = 1500; // how long the glide into the navbar takes
+const INTRO_HOLD_MS = 800;
+const INTRO_MOVE_MS = 1500;
 
 type Phase = "intro" | "moving" | "done";
 
@@ -28,7 +28,11 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
-  const [lens, setLens] = useState({ left: 0, width: 0, visible: false });
+  const [lens, setLens] = useState({
+    left: 0,
+    width: 0,
+    visible: false,
+  });
 
   const [phase, setPhase] = useState<Phase>("intro");
   const [fly, setFly] = useState<Fly | null>(null);
@@ -43,11 +47,14 @@ export default function Navbar() {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  const activeIndex = navItems.findIndex((item) => isActive(item.href));
+  const activeIndex = navItems.findIndex((item) =>
+    isActive(item.href)
+  );
 
   /* ---------- First-visit logo intro ---------- */
   useLayoutEffect(() => {
     let seen = false;
+
     try {
       seen = sessionStorage.getItem(INTRO_KEY) === "1";
     } catch {}
@@ -55,6 +62,7 @@ export default function Navbar() {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+
     const el = logoRef.current;
 
     if (seen || reduceMotion || !el || window.scrollY > 32) {
@@ -62,7 +70,6 @@ export default function Navbar() {
       return;
     }
 
-    // Where the logo lives inside the navbar
     const r = el.getBoundingClientRect();
     const vw = window.innerWidth;
     const vh = window.innerHeight;
@@ -76,9 +83,14 @@ export default function Navbar() {
       scale: Math.min(7, (Math.min(vw, vh) * 0.38) / r.width),
     });
 
-    const t1 = setTimeout(() => setPhase("moving"), INTRO_HOLD_MS);
+    const t1 = setTimeout(
+      () => setPhase("moving"),
+      INTRO_HOLD_MS
+    );
+
     const t2 = setTimeout(() => {
       setPhase("done");
+
       try {
         sessionStorage.setItem(INTRO_KEY, "1");
       } catch {}
@@ -90,11 +102,13 @@ export default function Navbar() {
     };
   }, []);
 
-  // Lock page scroll while the intro plays
+  /* ---------- Lock page scroll while the intro plays ---------- */
   useEffect(() => {
     if (phase === "done") return;
+
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.body.style.overflow = prev;
     };
@@ -103,57 +117,77 @@ export default function Navbar() {
   /* ---------- Shrink the pill on scroll ---------- */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ---------- Glass lens follows hover, rests on active page ---------- */
+  /* ---------- Glass lens follows hover and active page ---------- */
   const target = hovered ?? (activeIndex >= 0 ? activeIndex : null);
 
   useLayoutEffect(() => {
     const measure = () => {
-      const el = target !== null ? linkRefs.current[target] : null;
+      const el =
+        target !== null ? linkRefs.current[target] : null;
+
       if (!el) {
         setLens((l) => ({ ...l, visible: false }));
         return;
       }
-      setLens({ left: el.offsetLeft, width: el.offsetWidth, visible: true });
+
+      setLens({
+        left: el.offsetLeft,
+        width: el.offsetWidth,
+        visible: true,
+      });
     };
+
     measure();
     window.addEventListener("resize", measure);
+
     return () => window.removeEventListener("resize", measure);
   }, [target, pathname]);
 
-  /* ---------- Close mobile menu on route change / Escape ---------- */
-  useEffect(() => setMenuOpen(false), [pathname]);
+  /* ---------- Close mobile menu on route change ---------- */
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
+  /* ---------- Close menu with Escape ---------- */
   useEffect(() => {
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+
     document.addEventListener("keydown", onKey);
+
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
   }, [menuOpen]);
 
-  /* ---------- Cursor-following gold light inside the glass ---------- */
+  /* ---------- Cursor-following gold light ---------- */
   const onPillMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const pill = pillRef.current;
     if (!pill) return;
+
     const rect = pill.getBoundingClientRect();
+
     pill.style.setProperty("--mx", `${e.clientX - rect.left}px`);
     pill.style.setProperty("--my", `${e.clientY - rect.top}px`);
   };
 
   return (
     <>
-      {/* =====================================================
-          INTRO: dark screen + big logo gliding into the navbar
-      ====================================================== */}
+      {/* ---------- Intro animation ---------- */}
       {phase !== "done" && (
         <>
           <div
@@ -162,6 +196,7 @@ export default function Navbar() {
               phase === "moving" ? "opacity-0" : "opacity-100"
             }`}
           />
+
           {fly && (
             <div
               aria-hidden
@@ -179,7 +214,6 @@ export default function Navbar() {
                 transition: `transform ${INTRO_MOVE_MS}ms cubic-bezier(0.65, 0, 0.35, 1)`,
               }}
             >
-              {/* Larger source so it stays sharp while scaled up */}
               <Image
                 src="/icons/logo2.png"
                 alt=""
@@ -188,7 +222,7 @@ export default function Navbar() {
                 priority
                 className="size-full object-contain"
                 style={{
-                  opacity: phase === "intro" ? 1 : 1,
+                  opacity: 1,
                   animation: "logoIntroFadeIn 500ms ease-in-out both",
                 }}
               />
@@ -197,14 +231,12 @@ export default function Navbar() {
         </>
       )}
 
+      {/* ---------- Navbar ---------- */}
       <header
         className={`pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4 ${
           phase === "moving" ? "transition-opacity duration-1400" : ""
         } ${phase === "intro" ? "opacity-0" : "opacity-100"}`}
       >
-        {/* =====================================================
-            THE GLASS PILL
-        ====================================================== */}
         <div
           ref={pillRef}
           onMouseMove={onPillMove}
@@ -222,7 +254,7 @@ export default function Navbar() {
             }
           `}
         >
-          {/* Gold light that tracks the cursor */}
+          {/* Cursor-following gold light */}
           <span
             aria-hidden
             className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover/pill:opacity-100"
@@ -232,16 +264,13 @@ export default function Navbar() {
             }}
           />
 
-          {/* =================================================
-              LOGO: image + name that folds away on scroll
-          ================================================== */}
+          {/* Logo and desktop name */}
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
             aria-label="Khaled Ammar, home"
-            className="relative flex items-center gap-3 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37]"
+            className="relative z-10 flex items-center gap-3 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37]"
           >
-            {/* Hidden until the intro logo lands on top of it */}
             <span
               ref={logoRef}
               className={`block size-10 shrink-0 transition-transform duration-500 hover:rotate-[-8deg] ${
@@ -258,8 +287,9 @@ export default function Navbar() {
               />
             </span>
 
+            {/* Desktop name only */}
             <span
-              className={`grid transition-[grid-template-columns,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              className={`hidden md:grid transition-[grid-template-columns,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                 scrolled
                   ? "grid-cols-[0fr] opacity-0"
                   : "grid-cols-[1fr] opacity-100"
@@ -271,15 +301,22 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* =================================================
-              DESKTOP NAV with sliding glass lens
-          ================================================== */}
+          {/* Centered name — mobile only */}
+          <Link
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Khaled Ammar, home"
+            className="absolute left-1/2 z-10 -translate-x-1/2 whitespace-nowrap text-base font-bold tracking-tight text-(--foreground) md:hidden"
+          >
+            Khaled Ammar
+          </Link>
+
+          {/* Desktop navigation */}
           <ul
             ref={listRef}
             onMouseLeave={() => setHovered(null)}
             className="relative hidden items-center md:flex"
           >
-            {/* The lens */}
             <span
               aria-hidden
               className="pointer-events-none absolute top-1/2 h-9 -translate-y-1/2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_18px_rgba(212,175,55,0.25)] backdrop-blur-sm transition-[left,width,opacity] duration-500 ease-[cubic-bezier(0.34,1.4,0.64,1)]"
@@ -292,6 +329,7 @@ export default function Navbar() {
 
             {navItems.map((item, i) => {
               const active = isActive(item.href);
+
               return (
                 <li key={item.label}>
                   <Link
@@ -321,10 +359,8 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* =================================================
-              CONTACT + MOBILE TOGGLE
-          ================================================== */}
-          <div className="relative flex items-center gap-2">
+          {/* Contact and mobile toggle */}
+          <div className="relative z-10 flex items-center gap-2">
             <div className="hidden md:block">
               <Link
                 href="/contact"
@@ -345,7 +381,9 @@ export default function Navbar() {
             <button
               type="button"
               aria-label={
-                menuOpen ? "Close navigation menu" : "Open navigation menu"
+                menuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
               }
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -358,9 +396,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* =====================================================
-          MOBILE MENU: full-screen frosted sheet, large type
-      ====================================================== */}
+      {/* ---------- Mobile menu ---------- */}
       <div
         id="mobile-menu"
         aria-hidden={!menuOpen}
@@ -375,7 +411,7 @@ export default function Navbar() {
           }
         `}
       >
-        {/* Warm glow in the corner */}
+        {/* Warm corner glow */}
         <div
           aria-hidden
           className="pointer-events-none absolute -bottom-32 -left-24 size-96 rounded-full bg-[#D4AF37]/20 blur-3xl"
@@ -385,6 +421,7 @@ export default function Navbar() {
           <ul className="flex flex-col">
             {navItems.map((item, i) => {
               const active = isActive(item.href);
+
               return (
                 <li
                   key={item.label}
@@ -394,7 +431,9 @@ export default function Navbar() {
                       : "translate-y-6 opacity-0"
                   }`}
                   style={{
-                    transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms",
+                    transitionDelay: menuOpen
+                      ? `${120 + i * 60}ms`
+                      : "0ms",
                   }}
                 >
                   <Link
@@ -421,7 +460,9 @@ export default function Navbar() {
 
           <div
             className={`mt-10 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              menuOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+              menuOpen
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
             }`}
             style={{
               transitionDelay: menuOpen

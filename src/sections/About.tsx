@@ -309,7 +309,7 @@ export default function About() {
                     }}
                   >
                     <Image
-                      src="/images/Frame 4.png"
+                      src="/images/profile.png"
                       alt="Khaled Ammar"
                       fill
                       priority

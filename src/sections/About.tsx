@@ -106,7 +106,7 @@ export default function About() {
         );
       }
 
-      /* Portrait reveal — retained for the offset frame */
+      /* Portrait reveal */
       const ph = photoRef.current;
 
       if (ph) {
@@ -133,7 +133,6 @@ export default function About() {
           contentProgress.toFixed(3)
         );
 
-        /* SVG pathLength is 100, so the offset runs from 100 to 0 */
         root.style.setProperty(
           "--ring-offset",
           (100 * (1 - contentProgress)).toFixed(3)
@@ -192,7 +191,7 @@ export default function About() {
     <section
       id="about"
       ref={rootRef}
-      className="relative overflow-x-clip px-6 py-24 md:px-12 lg:px-20 lg:py-32"
+      className="relative w-full overflow-x-clip px-4 py-24 sm:px-8 md:px-12 lg:px-16 lg:py-32 xl:px-20"
     >
       <style>{`
         .ab-chip {
@@ -227,7 +226,9 @@ export default function About() {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl items-start gap-16 lg:grid-cols-12 lg:gap-14">
+      {/* Full-width content container */}
+      <div className="relative z-10 mx-auto grid w-full max-w-none items-start gap-12 lg:grid-cols-12 lg:gap-14">
+
         {/* ================= PHOTO ================= */}
         <div className="flex justify-center lg:sticky lg:top-24 lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:h-[calc(100svh-7rem)] lg:items-center lg:self-start">
           <div
@@ -238,15 +239,7 @@ export default function About() {
             <div
               aria-hidden="true"
               className="absolute left-1/2 top-1/2 -z-10 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D4AF37]/10 blur-[70px]"
-            />
-
-            {/* Rotating outer ring */}
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 -z-10 aspect-square w-[calc(100%+2rem)] -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite] rounded-full border border-[#D4AF37]/20 sm:w-[calc(100%+4rem)]"
-            >
-              <div className="absolute left-1/2 -top-1.25 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#D4AF37] shadow-[0_0_15px_#D4AF37]" />
-            </div>
+            />          
 
             {/* Offset gold frame */}
             <div
@@ -297,30 +290,39 @@ export default function About() {
               </svg>
 
               {/* Portrait image */}
-              <div className="absolute inset-0 overflow-hidden rounded-full border border-[#D4AF37]/15 bg-white/5 shadow-[0_25px_80px_rgba(0,0,0,0.5)]">
+              <div className="relative aspect-square w-full">
+                {/* Rotating gold orbit */}
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    transform:
-                      "translateY(calc((var(--sp, 0.5) - .5) * -24px)) scale(1.08)",
-                  }}
+                  aria-hidden="true"
+                  className="absolute left-1/2 top-1/2 z-10 aspect-square w-[calc(100%+4rem)] -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite] rounded-full border border-[#D4AF37]/20"
                 >
-                  <Image
-                    src="/images/Frame 4.png"
-                    alt="Khaled Ammar"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 22rem, (min-width: 640px) 20rem, 72vw"
-                    className="object-cover object-top"
-                  />
+                  <div className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D4AF37] shadow-[0_0_15px_#D4AF37]" />
                 </div>
 
-                {/* Bottom gradient */}
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#0B0B0F]/70 via-transparent to-transparent" />
+                {/* Centered image */}
+                <div className="absolute inset-0 overflow-hidden rounded-full border border-[#D4AF37]/15 bg-white/5 shadow-[0_25px_80px_rgba(0,0,0,0.5)]">
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      transform:
+                        "translateY(calc((var(--sp, 0.5) - .5) * -24px)) scale(1.08)",
+                    }}
+                  >
+                    <Image
+                      src="/images/Frame 4.png"
+                      alt="Khaled Ammar"
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 22rem, (min-width: 640px) 20rem, 72vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+
+                  {/* Bottom gradient */}
+                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#0B0B0F]/70 via-transparent to-transparent" />
+                </div>
               </div>
             </div>
-
-            
 
             {/* Active skill label */}
             <div className="absolute -bottom-5 left-1/2 z-30 -translate-x-1/2">
@@ -341,7 +343,8 @@ export default function About() {
         </div>
 
         {/* ================= TEXT + SKILLS ================= */}
-        <div className="lg:col-span-7 lg:col-start-1 lg:row-start-1">
+        <div className="min-w-0 lg:col-span-7 lg:col-start-1 lg:row-start-1">
+
           {/* Scroll-animated statement */}
           <p
             ref={statementRef}

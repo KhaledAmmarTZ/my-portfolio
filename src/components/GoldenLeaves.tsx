@@ -6,8 +6,8 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 /* Configuration                                                              */
 /* -------------------------------------------------------------------------- */
 
-const COUNT_DESKTOP = 28;
-const COUNT_MOBILE = 14;
+const COUNT_DESKTOP = 12;
+const COUNT_MOBILE = 7;
 
 const SLOWEST = 28;
 const FASTEST = 62;

@@ -180,14 +180,8 @@ export default function Achievement() {
         color: "var(--foreground)",
       }}
     >
-      {/* Background glow (same as About) */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-1/4 aspect-square w-160 max-w-[90vw] rounded-full"
-        style={{
-          background: `radial-gradient(closest-side, color-mix(in srgb, ${GOLD} 13%, transparent), transparent)`,
-        }}
-      />
+      {/* Background glow */}
+      
 
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
         {/* ================= HEADING ================= */}

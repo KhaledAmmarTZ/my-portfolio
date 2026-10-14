@@ -237,7 +237,7 @@ const DARK_TOKENS = `
   --ft-leaf-3: #b08a1f;
   --ft-vein: rgba(60, 40, 0, 0.4);
   --ft-glow: #d4af37;
-  --ft-glow-a: 0.22;
+  --ft-glow-a: 0.08;
 `;
 
 const CSS = `
@@ -465,7 +465,7 @@ export default function Footer({
       <style>{CSS}</style>
 
       {/* ================= TOP: invitation + links ================= */}
-      <div className="mx-auto w-full max-w-7xl px-4 pt-24 sm:px-6 sm:pt-32 lg:px-8">
+      <div className="mx-auto w-full px-4 pt-24 sm:px-8 sm:pt-32 md:px-12 lg:px-16 xl:px-20">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-20">
           <div>
             <h2 className="ft-rise max-w-2xl text-4xl font-medium leading-[1.1] tracking-tight sm:text-5xl md:text-6xl" style={rise(0)}>
